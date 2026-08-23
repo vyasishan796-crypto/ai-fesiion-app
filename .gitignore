@@ -1,0 +1,33 @@
+.env
+db.sqlite3
+__pycache__/
+*.pyc
+*.pyo
+staticfiles/
+*.log
+.DS_Store
+
+# Unrelated folders
+Cities-Skylines-Ii-AnkerGames/
+
+# Flutter
+ai_fashion_designer/.dart_tool/
+ai_fashion_designer/build/
+ai_fashion_designer/.packages
+ai_fashion_designer/android/.gradle/
+ai_fashion_designer/ios/Pods/
+ai_fashion_designer/.flutter-plugins
+ai_fashion_designer/.flutter-plugins-dependencies
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Backend
+backend/.env
+backend/db.sqlite3
+backend/staticfiles/
+backend/__pycache__/
+backend/api/__pycache__/
+backend/backend/__pycache__/
