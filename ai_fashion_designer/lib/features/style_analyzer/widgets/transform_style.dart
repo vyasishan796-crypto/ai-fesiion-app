@@ -45,10 +45,11 @@ class _TransformStyleState extends State<TransformStyle> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Transform This Look',
+          'TRANSFORM THIS LOOK',
           style: GoogleFonts.inter(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
+            fontSize: 14,
+            fontWeight: FontWeight.w800,
+            letterSpacing: 1.5,
             color: const Color(0xFF1D1D1F),
           ),
         ),
@@ -57,7 +58,7 @@ class _TransformStyleState extends State<TransformStyle> {
           'Currently: ${widget.originalStyle}',
           style: GoogleFonts.inter(
             fontSize: 13,
-            color: Colors.grey.shade500,
+            color: const Color(0xFF8E8E93),
           ),
         ),
         const SizedBox(height: 12),
@@ -76,15 +77,8 @@ class _TransformStyleState extends State<TransformStyle> {
                   duration: const Duration(milliseconds: 250),
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   decoration: BoxDecoration(
-                    color: isSelected
-                        ? const Color(0xFF7C4DFF)
-                        : const Color(0xFFF5F5F7),
+                    color: isSelected ? const Color(0xFF1D1D1F) : const Color(0xFFF5F5F7),
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: isSelected
-                          ? const Color(0xFF7C4DFF)
-                          : const Color(0xFFE8E8E8),
-                    ),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -92,15 +86,15 @@ class _TransformStyleState extends State<TransformStyle> {
                       Icon(
                         _styleIcons[style],
                         size: 15,
-                        color: isSelected ? Colors.white : const Color(0xFF7C4DFF),
+                        color: isSelected ? Colors.white : const Color(0xFF1D1D1F),
                       ),
                       const SizedBox(width: 6),
                       Text(
                         style,
                         style: GoogleFonts.inter(
                           fontSize: 13,
-                          fontWeight: FontWeight.w500,
-                          color: isSelected ? Colors.white : const Color(0xFF333333),
+                          fontWeight: FontWeight.w600,
+                          color: isSelected ? Colors.white : const Color(0xFF1D1D1F),
                         ),
                       ),
                     ],
@@ -120,24 +114,16 @@ class _TransformStyleState extends State<TransformStyle> {
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 14),
               decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF7C4DFF), Color(0xFFB388FF)],
-                ),
+                color: const Color(0xFF1D1D1F),
                 borderRadius: BorderRadius.circular(14),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0xFF7C4DFF).withOpacity(0.3),
-                    blurRadius: 12,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
               ),
               child: Center(
                 child: Text(
-                  '✨ Create This Style',
+                  'CREATE THIS STYLE',
                   style: GoogleFonts.inter(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 1.0,
                     color: Colors.white,
                   ),
                 ),

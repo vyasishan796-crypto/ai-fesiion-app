@@ -51,10 +51,11 @@ class ClothingChips extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Detected Clothing',
+          'DETECTED CLOTHING',
           style: GoogleFonts.inter(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
+            fontSize: 14,
+            fontWeight: FontWeight.w800,
+            letterSpacing: 1.5,
             color: const Color(0xFF1D1D1F),
           ),
         ),
@@ -68,7 +69,6 @@ class ClothingChips extends StatelessWidget {
               decoration: BoxDecoration(
                 color: const Color(0xFFF5F5F7),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: const Color(0xFFE8E8E8)),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -76,7 +76,7 @@ class ClothingChips extends StatelessWidget {
                   Icon(
                     _getIcon(items[index]),
                     size: 16,
-                    color: const Color(0xFF7C4DFF),
+                    color: const Color(0xFF1D1D1F),
                   ),
                   const SizedBox(width: 8),
                   Text(

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../core/theme/app_colors.dart';
-import '../../../core/theme/app_radius.dart';
 
 class ChatPrompt extends StatefulWidget {
   final TextEditingController controller;
@@ -47,11 +45,12 @@ class _ChatPromptState extends State<ChatPrompt> {
         children: [
           if (widget.messages.isNotEmpty) ...[
             Text(
-              'Conversation',
+              'CONVERSATION',
               style: GoogleFonts.inter(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: AppColors.ink,
+                fontSize: 11,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 1.5,
+                color: const Color(0xFF1D1D1F),
               ),
             ),
             const SizedBox(height: 12),
@@ -62,13 +61,12 @@ class _ChatPromptState extends State<ChatPrompt> {
             }),
             const SizedBox(height: 16),
           ],
-          // Input
           Container(
             decoration: BoxDecoration(
-              color: AppColors.canvas,
-              borderRadius: AppRadius.pill,
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: widget.enabled ? AppColors.accentPurple : AppColors.hairline,
+                color: widget.enabled ? const Color(0xFF1D1D1F) : const Color(0xFFE0E0E0),
                 width: 1.5,
               ),
             ),
@@ -80,26 +78,17 @@ class _ChatPromptState extends State<ChatPrompt> {
                     enabled: widget.enabled && !widget.isLoading,
                     maxLines: 3,
                     minLines: 1,
-                    style: GoogleFonts.inter(
-                      fontSize: 16,
-                      color: AppColors.ink,
-                    ),
+                    style: GoogleFonts.inter(fontSize: 16, color: const Color(0xFF1D1D1F)),
                     decoration: InputDecoration(
                       hintText: widget.enabled
-                          ? 'Describe your look... e.g. "Put this jacket on me, street style"'
-                          : 'Upload a photo and select an outfit first',
-                      hintStyle: GoogleFonts.inter(
-                        fontSize: 15,
-                        color: AppColors.inkMuted48,
-                      ),
+                          ? 'Describe your look...'
+                          : 'Upload a photo first',
+                      hintStyle: GoogleFonts.inter(fontSize: 15, color: const Color(0xFF8E8E93)),
                       border: InputBorder.none,
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 14,
-                      ),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
                       prefixIcon: Icon(
                         Icons.chat_outlined,
-                        color: widget.enabled ? AppColors.accentPurple : AppColors.inkMuted48,
+                        color: widget.enabled ? const Color(0xFF1D1D1F) : const Color(0xFF8E8E93),
                         size: 22,
                       ),
                       prefixIconConstraints: const BoxConstraints(minWidth: 48, minHeight: 48),
@@ -139,24 +128,21 @@ class _SendButton extends StatelessWidget {
               width: 44,
               height: 44,
               decoration: BoxDecoration(
-                color: AppColors.accentPurple.withOpacity(0.1),
+                color: const Color(0xFF1D1D1F).withOpacity(0.1),
                 shape: BoxShape.circle,
               ),
               child: const Center(
                 child: SizedBox(
                   width: 20,
                   height: 20,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                    color: AppColors.accentPurple,
-                  ),
+                  child: CircularProgressIndicator(strokeWidth: 2, color: Color(0xFF1D1D1F)),
                 ),
               ),
             )
           : IconButton(
               key: const ValueKey('send'),
               icon: const Icon(Icons.send_rounded, size: 22),
-              color: AppColors.accentPurple,
+              color: const Color(0xFF1D1D1F),
               onPressed: onPressed,
             ),
     );
@@ -186,20 +172,19 @@ class _MessageBubble extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.75),
         decoration: BoxDecoration(
-          color: isUser ? AppColors.accentPurple : AppColors.surfaceTile1,
+          color: isUser ? const Color(0xFF1D1D1F) : const Color(0xFFF5F5F7),
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(20),
             topRight: const Radius.circular(20),
             bottomLeft: Radius.circular(isUser ? 20 : 4),
             bottomRight: Radius.circular(isUser ? 4 : 20),
           ),
-          border: isUser ? null : Border.all(color: AppColors.dividerSoft),
         ),
         child: Text(
           text,
           style: GoogleFonts.inter(
             fontSize: 15,
-            color: isUser ? Colors.white : AppColors.ink,
+            color: isUser ? Colors.white : const Color(0xFF1D1D1F),
             height: 1.4,
           ),
         ),

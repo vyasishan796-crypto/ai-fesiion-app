@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../core/theme/app_colors.dart';
 import '../models/chat_message.dart';
 
 class QuickActionChips extends StatelessWidget {
@@ -28,18 +27,22 @@ class QuickActionChips extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
               decoration: BoxDecoration(
-                color: AppColors.white,
+                color: const Color(0xFFF5F5F7),
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: AppColors.primary.withOpacity(0.3)),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(action.icon, size: 14, color: AppColors.primary),
+                  Icon(action.icon, size: 14, color: const Color(0xFF1D1D1F)),
                   const SizedBox(width: 5),
                   Text(
-                    action.label,
-                    style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.primary),
+                    action.label.toUpperCase(),
+                    style: GoogleFonts.inter(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 0.5,
+                      color: const Color(0xFF1D1D1F),
+                    ),
                   ),
                 ],
               ),

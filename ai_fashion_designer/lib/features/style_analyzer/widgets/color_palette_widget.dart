@@ -14,10 +14,11 @@ class ColorPaletteWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Color Palette',
+          'COLOR PALETTE',
           style: GoogleFonts.inter(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
+            fontSize: 14,
+            fontWeight: FontWeight.w800,
+            letterSpacing: 1.5,
             color: const Color(0xFF1D1D1F),
           ),
         ),
@@ -41,13 +42,6 @@ class ColorPaletteWidget extends StatelessWidget {
                               : Colors.transparent,
                           width: 1.5,
                         ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: c.color.withOpacity(0.25),
-                            blurRadius: 8,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -55,7 +49,7 @@ class ColorPaletteWidget extends StatelessWidget {
                       c.name,
                       style: GoogleFonts.inter(
                         fontSize: 11,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w600,
                         color: const Color(0xFF1D1D1F),
                       ),
                       textAlign: TextAlign.center,
@@ -64,7 +58,7 @@ class ColorPaletteWidget extends StatelessWidget {
                       '${c.percentage.round()}%',
                       style: GoogleFonts.inter(
                         fontSize: 10,
-                        color: Colors.grey.shade500,
+                        color: const Color(0xFF8E8E93),
                       ),
                     ),
                   ],

@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
-import '../../core/theme/app_colors.dart';
 import '../../core/services/style_profile_service.dart';
 
 class StyleQuizScreen extends StatefulWidget {
@@ -83,7 +82,10 @@ class _StyleQuizScreenState extends State<StyleQuizScreen> {
     await StyleProfileService().updateFromQuiz(answers);
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Style profile updated!'), backgroundColor: AppColors.success),
+        SnackBar(
+          content: Text('Style profile updated!'),
+          backgroundColor: const Color(0xFF1D1D1F),
+        ),
       );
       context.pop();
     }
@@ -94,13 +96,21 @@ class _StyleQuizScreenState extends State<StyleQuizScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: AppColors.charcoal,
+        backgroundColor: const Color(0xFF1D1D1F),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.close, size: 24, color: Colors.white),
           onPressed: () => context.pop(),
         ),
-        title: Text('Style Quiz', style: GoogleFonts.inter(fontSize: 17, fontWeight: FontWeight.w700, color: Colors.white)),
+        title: Text(
+          'STYLE QUIZ',
+          style: GoogleFonts.inter(
+            fontSize: 14,
+            fontWeight: FontWeight.w800,
+            letterSpacing: 1.5,
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Column(
@@ -126,15 +136,31 @@ class _StyleQuizScreenState extends State<StyleQuizScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Step ${_currentStep + 1} of $_totalSteps', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.inkMuted48)),
-              Text('${(_progress * 100).toInt()}%', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.accentPurple)),
+              Text(
+                'STEP ${_currentStep + 1} OF $_totalSteps',
+                style: GoogleFonts.inter(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 1.0,
+                  color: const Color(0xFF8E8E93),
+                ),
+              ),
+              Text(
+                '${(_progress * 100).toInt()}%',
+                style: GoogleFonts.inter(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 1.0,
+                  color: const Color(0xFF1D1D1F),
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 8),
           LinearProgressIndicator(
             value: _progress,
-            backgroundColor: AppColors.dividerSoft,
-            valueColor: const AlwaysStoppedAnimation<Color>(AppColors.accentPurple),
+            backgroundColor: const Color(0xFFF5F5F7),
+            valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF1D1D1F)),
             borderRadius: BorderRadius.circular(4),
             minHeight: 6,
           ),
@@ -158,15 +184,26 @@ class _StyleQuizScreenState extends State<StyleQuizScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("What's your gender?", style: GoogleFonts.inter(fontSize: 26, fontWeight: FontWeight.w800, color: AppColors.ink, letterSpacing: -0.5)),
+        Text(
+          "WHAT'S YOUR GENDER?",
+          style: GoogleFonts.inter(
+            fontSize: 24,
+            fontWeight: FontWeight.w900,
+            letterSpacing: -0.5,
+            color: const Color(0xFF1D1D1F),
+          ),
+        ),
         const SizedBox(height: 8),
-        Text('This helps us personalize outfit recommendations', style: GoogleFonts.inter(fontSize: 14, color: AppColors.inkMuted48)),
+        Text(
+          'This helps us personalize outfit recommendations',
+          style: GoogleFonts.inter(fontSize: 14, color: const Color(0xFF8E8E93)),
+        ),
         const SizedBox(height: 32),
         Row(
           children: [
-            _buildGenderOption('male', 'Men', Icons.male_rounded),
+            _buildGenderOption('male', 'MEN', Icons.male_rounded),
             const SizedBox(width: 16),
-            _buildGenderOption('female', 'Women', Icons.female_rounded),
+            _buildGenderOption('female', 'WOMEN', Icons.female_rounded),
           ],
         ),
       ],
@@ -188,15 +225,22 @@ class _StyleQuizScreenState extends State<StyleQuizScreen> {
           duration: const Duration(milliseconds: 200),
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
-            color: isSelected ? AppColors.accentPurple.withOpacity(0.08) : AppColors.canvasParchment,
+            color: isSelected ? const Color(0xFF1D1D1F) : const Color(0xFFF5F5F7),
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: isSelected ? AppColors.accentPurple : Colors.transparent, width: 2),
           ),
           child: Column(
             children: [
-              Icon(icon, size: 48, color: isSelected ? AppColors.accentPurple : AppColors.inkMuted48),
+              Icon(icon, size: 48, color: isSelected ? Colors.white : const Color(0xFF8E8E93)),
               const SizedBox(height: 12),
-              Text(label, style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600, color: isSelected ? AppColors.accentPurple : AppColors.ink)),
+              Text(
+                label,
+                style: GoogleFonts.inter(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 1.5,
+                  color: isSelected ? Colors.white : const Color(0xFF1D1D1F),
+                ),
+              ),
             ],
           ),
         ),
@@ -209,9 +253,20 @@ class _StyleQuizScreenState extends State<StyleQuizScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Your body type', style: GoogleFonts.inter(fontSize: 26, fontWeight: FontWeight.w800, color: AppColors.ink, letterSpacing: -0.5)),
+        Text(
+          'YOUR BODY TYPE',
+          style: GoogleFonts.inter(
+            fontSize: 24,
+            fontWeight: FontWeight.w900,
+            letterSpacing: -0.5,
+            color: const Color(0xFF1D1D1F),
+          ),
+        ),
         const SizedBox(height: 8),
-        Text('Helps us suggest the best fits for you', style: GoogleFonts.inter(fontSize: 14, color: AppColors.inkMuted48)),
+        Text(
+          'Helps us suggest the best fits',
+          style: GoogleFonts.inter(fontSize: 14, color: const Color(0xFF8E8E93)),
+        ),
         const SizedBox(height: 32),
         ...types.map((type) {
           final isSelected = _bodyType == type;
@@ -224,15 +279,25 @@ class _StyleQuizScreenState extends State<StyleQuizScreen> {
               margin: const EdgeInsets.only(bottom: 12),
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: isSelected ? AppColors.accentPurple.withOpacity(0.08) : AppColors.canvasParchment,
+                color: isSelected ? const Color(0xFF1D1D1F) : const Color(0xFFF5F5F7),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: isSelected ? AppColors.accentPurple : Colors.transparent, width: 2),
               ),
               child: Row(
                 children: [
-                  Icon(isSelected ? Icons.radio_button_checked : Icons.radio_button_off, color: isSelected ? AppColors.accentPurple : AppColors.inkMuted48, size: 22),
+                  Icon(
+                    isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
+                    color: isSelected ? Colors.white : const Color(0xFF8E8E93),
+                    size: 22,
+                  ),
                   const SizedBox(width: 14),
-                  Text(type, style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w600, color: isSelected ? AppColors.accentPurple : AppColors.ink)),
+                  Text(
+                    type,
+                    style: GoogleFonts.inter(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: isSelected ? Colors.white : const Color(0xFF1D1D1F),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -247,9 +312,20 @@ class _StyleQuizScreenState extends State<StyleQuizScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Your style vibes', style: GoogleFonts.inter(fontSize: 26, fontWeight: FontWeight.w800, color: AppColors.ink, letterSpacing: -0.5)),
+        Text(
+          'YOUR STYLE VIBES',
+          style: GoogleFonts.inter(
+            fontSize: 24,
+            fontWeight: FontWeight.w900,
+            letterSpacing: -0.5,
+            color: const Color(0xFF1D1D1F),
+          ),
+        ),
         const SizedBox(height: 8),
-        Text('Pick all that resonate with you', style: GoogleFonts.inter(fontSize: 14, color: AppColors.inkMuted48)),
+        Text(
+          'Pick all that resonate with you',
+          style: GoogleFonts.inter(fontSize: 14, color: const Color(0xFF8E8E93)),
+        ),
         const SizedBox(height: 32),
         Wrap(
           spacing: 10,
@@ -271,11 +347,17 @@ class _StyleQuizScreenState extends State<StyleQuizScreen> {
                 duration: const Duration(milliseconds: 200),
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 decoration: BoxDecoration(
-                  color: isSelected ? AppColors.accentPurple : AppColors.canvasParchment,
+                  color: isSelected ? const Color(0xFF1D1D1F) : const Color(0xFFF5F5F7),
                   borderRadius: BorderRadius.circular(25),
-                  border: Border.all(color: isSelected ? AppColors.accentPurple : AppColors.dividerSoft),
                 ),
-                child: Text(style, style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600, color: isSelected ? Colors.white : AppColors.ink)),
+                child: Text(
+                  style,
+                  style: GoogleFonts.inter(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: isSelected ? Colors.white : const Color(0xFF1D1D1F),
+                  ),
+                ),
               ),
             );
           }).toList(),
@@ -288,9 +370,20 @@ class _StyleQuizScreenState extends State<StyleQuizScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Favorite colors', style: GoogleFonts.inter(fontSize: 26, fontWeight: FontWeight.w800, color: AppColors.ink, letterSpacing: -0.5)),
+        Text(
+          'FAVORITE COLORS',
+          style: GoogleFonts.inter(
+            fontSize: 24,
+            fontWeight: FontWeight.w900,
+            letterSpacing: -0.5,
+            color: const Color(0xFF1D1D1F),
+          ),
+        ),
         const SizedBox(height: 8),
-        Text('Pick up to 5 colors you love wearing', style: GoogleFonts.inter(fontSize: 14, color: AppColors.inkMuted48)),
+        Text(
+          'Pick up to 5 colors you love wearing',
+          style: GoogleFonts.inter(fontSize: 14, color: const Color(0xFF8E8E93)),
+        ),
         const SizedBox(height: 32),
         Wrap(
           spacing: 12,
@@ -317,10 +410,10 @@ class _StyleQuizScreenState extends State<StyleQuizScreen> {
                   color: color,
                   borderRadius: BorderRadius.circular(14),
                   border: Border.all(
-                    color: isSelected ? AppColors.accentPurple : (color == Colors.white ? Colors.grey.shade300 : Colors.transparent),
+                    color: isSelected ? const Color(0xFF1D1D1F) : (color == Colors.white ? Colors.grey.shade300 : Colors.transparent),
                     width: isSelected ? 3 : 1,
                   ),
-                  boxShadow: isSelected ? [BoxShadow(color: AppColors.accentPurple.withOpacity(0.3), blurRadius: 8, offset: const Offset(0, 2))] : null,
+                  boxShadow: isSelected ? [BoxShadow(color: const Color(0xFF1D1D1F).withOpacity(0.3), blurRadius: 8, offset: const Offset(0, 2))] : null,
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -342,9 +435,20 @@ class _StyleQuizScreenState extends State<StyleQuizScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('When do you dress up?', style: GoogleFonts.inter(fontSize: 26, fontWeight: FontWeight.w800, color: AppColors.ink, letterSpacing: -0.5)),
+        Text(
+          'WHEN DO YOU DRESS UP?',
+          style: GoogleFonts.inter(
+            fontSize: 24,
+            fontWeight: FontWeight.w900,
+            letterSpacing: -0.5,
+            color: const Color(0xFF1D1D1F),
+          ),
+        ),
         const SizedBox(height: 8),
-        Text('We will suggest outfits for these occasions', style: GoogleFonts.inter(fontSize: 14, color: AppColors.inkMuted48)),
+        Text(
+          'We will suggest outfits for these occasions',
+          style: GoogleFonts.inter(fontSize: 14, color: const Color(0xFF8E8E93)),
+        ),
         const SizedBox(height: 32),
         Wrap(
           spacing: 10,
@@ -366,11 +470,17 @@ class _StyleQuizScreenState extends State<StyleQuizScreen> {
                 duration: const Duration(milliseconds: 200),
                 padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
                 decoration: BoxDecoration(
-                  color: isSelected ? AppColors.accentPurple : AppColors.canvasParchment,
+                  color: isSelected ? const Color(0xFF1D1D1F) : const Color(0xFFF5F5F7),
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: isSelected ? AppColors.accentPurple : Colors.transparent),
                 ),
-                child: Text(occ, style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600, color: isSelected ? Colors.white : AppColors.ink)),
+                child: Text(
+                  occ,
+                  style: GoogleFonts.inter(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: isSelected ? Colors.white : const Color(0xFF1D1D1F),
+                  ),
+                ),
               ),
             );
           }).toList(),
@@ -393,26 +503,38 @@ class _StyleQuizScreenState extends State<StyleQuizScreen> {
               child: OutlinedButton(
                 onPressed: _prevStep,
                 style: OutlinedButton.styleFrom(
-                  side: const BorderSide(color: AppColors.inkMuted48),
+                  side: const BorderSide(color: Color(0xFF1D1D1F)),
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 ),
-                child: Text('Back', style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w600, color: AppColors.ink)),
+                child: Text(
+                  'BACK',
+                  style: GoogleFonts.inter(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 1.0,
+                    color: const Color(0xFF1D1D1F),
+                  ),
+                ),
               ),
             ),
           if (_currentStep > 0) const SizedBox(width: 16),
           Expanded(
-            flex: _currentStep == 0 ? 1 : 1,
             child: ElevatedButton(
               onPressed: _nextStep,
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.accentPurple,
+                backgroundColor: const Color(0xFF1D1D1F),
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               ),
               child: Text(
-                _currentStep == _totalSteps - 1 ? 'Finish' : 'Continue',
-                style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w700, color: Colors.white),
+                _currentStep == _totalSteps - 1 ? 'FINISH' : 'CONTINUE',
+                style: GoogleFonts.inter(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 1.0,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),

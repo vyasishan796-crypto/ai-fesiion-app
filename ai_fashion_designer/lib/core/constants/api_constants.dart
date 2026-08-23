@@ -42,7 +42,7 @@ class ApiConstants {
   // USB: run `adb reverse tcp:8000 tcp:8000` then use http://127.0.0.1:8000/api
   static const String backendBaseUrl = String.fromEnvironment(
     'BACKEND_URL',
-    defaultValue: 'http://127.0.0.1:8000/api',
+    defaultValue: 'https://styleai-backend-ql5v.onrender.com/api',
   );
   static const String virtualTryOnEndpoint = '$backendBaseUrl/virtual-tryon/';
   static const String virtualTryOnHistoryEndpoint = '$backendBaseUrl/virtual-tryon/history/';

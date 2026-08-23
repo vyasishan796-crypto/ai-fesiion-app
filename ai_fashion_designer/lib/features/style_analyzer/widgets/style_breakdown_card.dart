@@ -11,7 +11,7 @@ class StyleBreakdownCard extends StatelessWidget {
 
   Color _scoreColor(int score) {
     if (score >= 90) return const Color(0xFF34C759);
-    if (score >= 80) return const Color(0xFF7C4DFF);
+    if (score >= 80) return const Color(0xFF1D1D1F);
     if (score >= 70) return const Color(0xFFFF9500);
     return const Color(0xFFFF3B30);
   }
@@ -48,16 +48,8 @@ class StyleBreakdownCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xFF1D1D1F),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE8E8E8)),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF7C4DFF).withOpacity(0.06),
-            blurRadius: 20,
-            offset: const Offset(0, 4),
-          ),
-        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,7 +65,7 @@ class StyleBreakdownCard extends StatelessWidget {
                     CircularProgressIndicator(
                       value: totalScore / 100,
                       strokeWidth: 6,
-                      backgroundColor: Colors.grey.shade200,
+                      backgroundColor: Colors.white.withOpacity(0.15),
                       valueColor: AlwaysStoppedAnimation(color),
                       strokeCap: StrokeCap.round,
                     ),
@@ -86,14 +78,14 @@ class StyleBreakdownCard extends StatelessWidget {
                             style: GoogleFonts.inter(
                               fontSize: 18,
                               fontWeight: FontWeight.w800,
-                              color: color,
+                              color: Colors.white,
                             ),
                           ),
                           Text(
                             '/ 100',
                             style: GoogleFonts.inter(
                               fontSize: 9,
-                              color: Colors.grey.shade500,
+                              color: Colors.white.withOpacity(0.5),
                             ),
                           ),
                         ],
@@ -108,11 +100,12 @@ class StyleBreakdownCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Outfit Score',
+                      'OUTFIT SCORE',
                       style: GoogleFonts.inter(
-                        fontSize: 12,
-                        color: Colors.grey.shade500,
-                        fontWeight: FontWeight.w500,
+                        fontSize: 10,
+                        color: Colors.white.withOpacity(0.5),
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 1.0,
                       ),
                     ),
                     const SizedBox(height: 2),
@@ -121,7 +114,7 @@ class StyleBreakdownCard extends StatelessWidget {
                       style: GoogleFonts.inter(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
-                        color: const Color(0xFF1D1D1F),
+                        color: Colors.white,
                       ),
                     ),
                     if (analysis.scoreReason != null) ...[
@@ -130,7 +123,7 @@ class StyleBreakdownCard extends StatelessWidget {
                         analysis.scoreReason!,
                         style: GoogleFonts.inter(
                           fontSize: 12,
-                          color: Colors.grey.shade600,
+                          color: Colors.white.withOpacity(0.6),
                           height: 1.3,
                         ),
                         maxLines: 2,
@@ -144,7 +137,7 @@ class StyleBreakdownCard extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           if (analysis.scoreBreakdown.isNotEmpty) ...[
-            const Divider(height: 1),
+            Divider(height: 1, color: Colors.white.withOpacity(0.1)),
             const SizedBox(height: 12),
             ...analysis.scoreBreakdown.entries.map((entry) {
               final entryColor = _scoreColor(entry.value);
@@ -152,7 +145,7 @@ class StyleBreakdownCard extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 8),
                 child: Row(
                   children: [
-                    Icon(_factorIcon(entry.key), size: 14, color: entryColor),
+                    Icon(_factorIcon(entry.key), size: 14, color: Colors.white.withOpacity(0.6)),
                     const SizedBox(width: 6),
                     SizedBox(
                       width: 80,
@@ -161,7 +154,7 @@ class StyleBreakdownCard extends StatelessWidget {
                         style: GoogleFonts.inter(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
-                          color: const Color(0xFF1D1D1F),
+                          color: Colors.white.withOpacity(0.8),
                         ),
                       ),
                     ),
@@ -172,7 +165,7 @@ class StyleBreakdownCard extends StatelessWidget {
                         child: LinearProgressIndicator(
                           value: entry.value / 100,
                           minHeight: 6,
-                          backgroundColor: Colors.grey.shade200,
+                          backgroundColor: Colors.white.withOpacity(0.1),
                           valueColor: AlwaysStoppedAnimation(entryColor),
                         ),
                       ),
@@ -202,21 +195,21 @@ class StyleBreakdownCard extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 10),
               decoration: BoxDecoration(
-                color: const Color(0xFFF0EBFF),
+                color: Colors.white.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: const Color(0xFFE0D6FF)),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.help_outline, size: 16, color: Color(0xFF7C4DFF)),
+                  Icon(Icons.help_outline, size: 16, color: Colors.white.withOpacity(0.7)),
                   const SizedBox(width: 6),
                   Text(
-                    'Why this score?',
+                    'WHY THIS SCORE?',
                     style: GoogleFonts.inter(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      color: const Color(0xFF7C4DFF),
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 1.0,
+                      color: Colors.white.withOpacity(0.8),
                     ),
                   ),
                 ],

@@ -22,13 +22,14 @@ class AiRecommendations extends StatelessWidget {
       children: [
         Row(
           children: [
-            const Icon(Icons.auto_awesome, color: Color(0xFF7C4DFF), size: 20),
+            const Icon(Icons.auto_awesome, color: Color(0xFFFA5400), size: 20),
             const SizedBox(width: 8),
             Text(
-              'AI Suggestions',
+              'AI SUGGESTIONS',
               style: GoogleFonts.inter(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
+                fontSize: 14,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 1.5,
                 color: const Color(0xFF1D1D1F),
               ),
             ),
@@ -41,9 +42,8 @@ class AiRecommendations extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: const Color(0xFFF8F6FF),
+                color: const Color(0xFFF5F5F7),
                 borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: const Color(0xFFE8E0FF)),
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,13 +52,13 @@ class AiRecommendations extends StatelessWidget {
                     width: 32,
                     height: 32,
                     decoration: BoxDecoration(
-                      color: const Color(0xFF7C4DFF).withOpacity(0.12),
+                      color: const Color(0xFF1D1D1F),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Icon(
                       _icons[index % _icons.length],
                       size: 16,
-                      color: const Color(0xFF7C4DFF),
+                      color: Colors.white,
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -67,7 +67,7 @@ class AiRecommendations extends StatelessWidget {
                       recommendations[index],
                       style: GoogleFonts.inter(
                         fontSize: 13,
-                        color: const Color(0xFF333333),
+                        color: const Color(0xFF1D1D1F),
                         height: 1.4,
                       ),
                     ),

@@ -28,13 +28,14 @@ class OutfitSuggestions extends StatelessWidget {
       children: [
         Row(
           children: [
-            const Icon(Icons.palette_outlined, color: Color(0xFF7C4DFF), size: 20),
+            const Icon(Icons.palette_outlined, color: Color(0xFF1D1D1F), size: 20),
             const SizedBox(width: 8),
             Text(
-              'Style Suggestions',
+              'STYLE SUGGESTIONS',
               style: GoogleFonts.inter(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
+                fontSize: 14,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 1.5,
                 color: const Color(0xFF1D1D1F),
               ),
             ),
@@ -42,10 +43,10 @@ class OutfitSuggestions extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          'Curated outfits with color palettes based on your look',
+          'Curated outfits based on your look',
           style: GoogleFonts.inter(
             fontSize: 12,
-            color: Colors.grey.shade500,
+            color: const Color(0xFF8E8E93),
           ),
         ),
         const SizedBox(height: 12),
@@ -58,16 +59,8 @@ class OutfitSuggestions extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: const Color(0xFFF5F5F7),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: const Color(0xFFE8E8E8)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.03),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,12 +71,7 @@ class OutfitSuggestions extends StatelessWidget {
                         width: 36,
                         height: 36,
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              _getOccasionColor(s.occasion),
-                              _getOccasionColor(s.occasion).withOpacity(0.7),
-                            ],
-                          ),
+                          color: const Color(0xFF1D1D1F),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Icon(
@@ -101,7 +89,7 @@ class OutfitSuggestions extends StatelessWidget {
                               s.title,
                               style: GoogleFonts.inter(
                                 fontSize: 15,
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.w700,
                                 color: const Color(0xFF1D1D1F),
                               ),
                             ),
@@ -110,7 +98,7 @@ class OutfitSuggestions extends StatelessWidget {
                               s.occasion,
                               style: GoogleFonts.inter(
                                 fontSize: 12,
-                                color: Colors.grey.shade500,
+                                color: const Color(0xFF8E8E93),
                               ),
                             ),
                           ],
@@ -135,14 +123,14 @@ class OutfitSuggestions extends StatelessWidget {
                       return Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFF5F5F7),
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(6),
                         ),
                         child: Text(
                           item,
                           style: GoogleFonts.inter(
                             fontSize: 11,
-                            color: Colors.grey.shade600,
+                            color: const Color(0xFF1D1D1F),
                           ),
                         ),
                       );
@@ -153,28 +141,23 @@ class OutfitSuggestions extends StatelessWidget {
                     width: double.infinity,
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          const Color(0xFFF8F6FF),
-                          const Color(0xFFF0EBFF).withOpacity(0.5),
-                        ],
-                      ),
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: const Color(0xFFE8E0FF)),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           children: [
-                            Icon(Icons.palette, size: 14, color: const Color(0xFF7C4DFF)),
+                            const Icon(Icons.palette, size: 14, color: Color(0xFF1D1D1F)),
                             const SizedBox(width: 6),
                             Text(
-                              'Color Palette',
+                              'COLOR PALETTE',
                               style: GoogleFonts.inter(
-                                fontSize: 11,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(0xFF7C4DFF),
+                                fontSize: 10,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: 1.0,
+                                color: const Color(0xFF8E8E93),
                               ),
                             ),
                           ],
@@ -189,7 +172,7 @@ class OutfitSuggestions extends StatelessWidget {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text('${c.name} — ${c.hex}'),
-                                      backgroundColor: c.color,
+                                      backgroundColor: const Color(0xFF1D1D1F),
                                       duration: const Duration(seconds: 1),
                                     ),
                                   );
@@ -207,13 +190,6 @@ class OutfitSuggestions extends StatelessWidget {
                                               ? Colors.grey.shade200
                                               : Colors.transparent,
                                         ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: c.color.withOpacity(0.3),
-                                            blurRadius: 6,
-                                            offset: const Offset(0, 2),
-                                          ),
-                                        ],
                                       ),
                                     ),
                                     const SizedBox(height: 4),
@@ -221,8 +197,8 @@ class OutfitSuggestions extends StatelessWidget {
                                       c.name,
                                       style: GoogleFonts.inter(
                                         fontSize: 9,
-                                        fontWeight: FontWeight.w500,
-                                        color: const Color(0xFF333333),
+                                        fontWeight: FontWeight.w600,
+                                        color: const Color(0xFF1D1D1F),
                                       ),
                                       textAlign: TextAlign.center,
                                     ),
@@ -230,7 +206,7 @@ class OutfitSuggestions extends StatelessWidget {
                                       c.usage,
                                       style: GoogleFonts.inter(
                                         fontSize: 8,
-                                        color: Colors.grey.shade500,
+                                        color: const Color(0xFF8E8E93),
                                       ),
                                       textAlign: TextAlign.center,
                                     ),
@@ -302,7 +278,6 @@ class OutfitSuggestions extends StatelessWidget {
 
     final suggestions = <_SuggestionData>[];
 
-    // Suggestion 1: Enhance Current Look
     suggestions.add(_SuggestionData(
       title: 'Enhance Your Look',
       occasion: style,
@@ -318,7 +293,6 @@ class OutfitSuggestions extends StatelessWidget {
       colors: _buildRealPalette(primaryColor, secondaryColor, accentColor, realColors),
     ));
 
-    // Suggestion 2: Color Swap
     suggestions.add(_SuggestionData(
       title: 'Color Swap Variation',
       occasion: 'Casual / Daily',
@@ -336,7 +310,6 @@ class OutfitSuggestions extends StatelessWidget {
       colors: _buildContrastPalette(realColors),
     ));
 
-    // Suggestion 3: Upgrade / Dress Up
     suggestions.add(_SuggestionData(
       title: 'Dress It Up',
       occasion: 'Semi-Formal / College',
@@ -354,7 +327,6 @@ class OutfitSuggestions extends StatelessWidget {
       colors: _buildRealPalette(primaryColor, secondaryColor, accentColor, realColors),
     ));
 
-    // Suggestion 4: Casual Downgrade
     suggestions.add(_SuggestionData(
       title: 'Casual Refresh',
       occasion: 'Relax / Weekend',
@@ -371,7 +343,6 @@ class OutfitSuggestions extends StatelessWidget {
       colors: _buildRealPalette(primaryColor, secondaryColor, accentColor, realColors),
     ));
 
-    // Suggestion 5: Indian Ethnic Fusion
     suggestions.add(_SuggestionData(
       title: 'Indian Ethnic Fusion',
       occasion: 'Festival / Wedding / Pooja',
@@ -393,7 +364,6 @@ class OutfitSuggestions extends StatelessWidget {
       ],
     ));
 
-    // Suggestion 6: Indian-Western Hybrid
     suggestions.add(_SuggestionData(
       title: 'Desi x Street Style',
       occasion: 'College / Casual / Hangout',
@@ -520,15 +490,6 @@ class OutfitSuggestions extends StatelessWidget {
   String _hexFromName(String name) {
     final c = _getColorFromName(name);
     return '#${c.value.toRadixString(16).substring(2).toUpperCase()}';
-  }
-
-  Color _getOccasionColor(String occasion) {
-    final lower = occasion.toLowerCase();
-    if (lower.contains('casual') || lower.contains('daily')) return const Color(0xFF34C759);
-    if (lower.contains('college') || lower.contains('semi')) return const Color(0xFF007AFF);
-    if (lower.contains('party') || lower.contains('evening')) return const Color(0xFFAF52DE);
-    if (lower.contains('street') || lower.contains('urban')) return const Color(0xFFFF9500);
-    return const Color(0xFF7C4DFF);
   }
 
   IconData _getOccasionIcon(String occasion) {

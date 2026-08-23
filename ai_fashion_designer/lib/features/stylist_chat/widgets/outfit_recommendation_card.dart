@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../core/theme/app_colors.dart';
 import '../models/chat_message.dart';
 
 class OutfitRecommendationCard extends StatelessWidget {
@@ -21,12 +20,8 @@ class OutfitRecommendationCard extends StatelessWidget {
     return Container(
       width: 280,
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: const Color(0xFF1D1D1F),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.border),
-        boxShadow: [
-          BoxShadow(color: AppColors.charcoal.withOpacity(0.06), blurRadius: 12, offset: const Offset(0, 4)),
-        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,15 +35,8 @@ class OutfitRecommendationCard extends StatelessWidget {
   }
 
   Widget _buildHeader() {
-    return Container(
-      width: double.infinity,
+    return Padding(
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [AppColors.primary.withOpacity(0.08), AppColors.primary.withOpacity(0.03)],
-        ),
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -57,38 +45,43 @@ class OutfitRecommendationCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                 decoration: BoxDecoration(
-                  color: AppColors.primary.withOpacity(0.1),
+                  color: Colors.white.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Text(
-                  outfit.style,
-                  style: GoogleFonts.inter(fontSize: 10, fontWeight: FontWeight.w600, color: AppColors.primary),
+                  outfit.style.toUpperCase(),
+                  style: GoogleFonts.inter(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 0.8,
+                    color: Colors.white,
+                  ),
                 ),
               ),
               const Spacer(),
-              Icon(Icons.auto_awesome, size: 14, color: AppColors.primary.withOpacity(0.6)),
+              const Icon(Icons.auto_awesome, size: 14, color: Colors.white38),
             ],
           ),
           const SizedBox(height: 10),
           Text(
             outfit.name,
-            style: GoogleFonts.inter(fontSize: 17, fontWeight: FontWeight.w700, color: AppColors.ink),
+            style: GoogleFonts.inter(fontSize: 17, fontWeight: FontWeight.w700, color: Colors.white),
           ),
           const SizedBox(height: 4),
           Row(
             children: [
-              Icon(Icons.event_outlined, size: 14, color: AppColors.inkMuted),
+              Icon(Icons.event_outlined, size: 14, color: Colors.white.withOpacity(0.5)),
               const SizedBox(width: 4),
               Text(
                 outfit.occasion,
-                style: GoogleFonts.inter(fontSize: 12, color: AppColors.inkMuted),
+                style: GoogleFonts.inter(fontSize: 12, color: Colors.white.withOpacity(0.5)),
               ),
             ],
           ),
           const SizedBox(height: 6),
           Text(
             outfit.estimatedPrice,
-            style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.w800, color: AppColors.primary),
+            style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.w800, color: const Color(0xFFFA5400)),
           ),
         ],
       ),
@@ -97,23 +90,28 @@ class OutfitRecommendationCard extends StatelessWidget {
 
   Widget _buildComponents() {
     return Padding(
-      padding: const EdgeInsets.all(14),
+      padding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'What\'s Included',
-            style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.inkMuted),
+            'WHAT\'S INCLUDED',
+            style: GoogleFonts.inter(
+              fontSize: 10,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 1.0,
+              color: Colors.white.withOpacity(0.4),
+            ),
           ),
           const SizedBox(height: 8),
           ...outfit.components.map((item) => Padding(
             padding: const EdgeInsets.only(bottom: 5),
             child: Row(
               children: [
-                Container(width: 5, height: 5, decoration: BoxDecoration(color: AppColors.primary, shape: BoxShape.circle)),
+                Container(width: 5, height: 5, decoration: BoxDecoration(color: const Color(0xFFFA5400), shape: BoxShape.circle)),
                 const SizedBox(width: 8),
                 Expanded(
-                  child: Text(item, style: GoogleFonts.inter(fontSize: 13, color: AppColors.ink)),
+                  child: Text(item, style: GoogleFonts.inter(fontSize: 13, color: Colors.white.withOpacity(0.8))),
                 ),
               ],
             ),
@@ -134,7 +132,7 @@ class OutfitRecommendationCard extends StatelessWidget {
           _buildActionChip('Modify', Icons.tune, () {}),
           _buildActionChip('Save', Icons.bookmark_outline, () {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Outfit saved!'), backgroundColor: AppColors.success),
+              const SnackBar(content: Text('Outfit saved!'), backgroundColor: Color(0xFF1D1D1F)),
             );
           }),
           _buildActionChip('Try-On', Icons.checkroom, () {}),
@@ -153,15 +151,22 @@ class OutfitRecommendationCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
         decoration: BoxDecoration(
-          color: AppColors.lightGrey,
+          color: Colors.white.withOpacity(0.1),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, size: 13, color: AppColors.primary),
+            Icon(icon, size: 13, color: Colors.white.withOpacity(0.7)),
             const SizedBox(width: 4),
-            Text(label, style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w600, color: AppColors.ink)),
+            Text(
+              label,
+              style: GoogleFonts.inter(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+                color: Colors.white.withOpacity(0.8),
+              ),
+            ),
           ],
         ),
       ),

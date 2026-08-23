@@ -75,7 +75,7 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Analyze failed: $msg', style: const TextStyle(color: Colors.white)),
-          backgroundColor: const Color(0xFFEF4444),
+          backgroundColor: const Color(0xFF1D1D1F),
           behavior: SnackBarBehavior.floating,
           duration: const Duration(seconds: 5),
           action: SnackBarAction(label: 'RETRY', textColor: Colors.white, onPressed: _analyzeImage),
@@ -107,7 +107,7 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
       setState(() => _isGeneratingTransform = false);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Generation failed: $e'), backgroundColor: Colors.red),
+          SnackBar(content: Text('Generation failed: $e'), backgroundColor: const Color(0xFF1D1D1F)),
         );
       }
     }
@@ -164,7 +164,34 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
     );
   }
 
-  // ─── INITIAL VIEW ───────────────────────────────
+  Widget _buildHeader({VoidCallback? onBack}) {
+    return Row(
+      children: [
+        GestureDetector(
+          onTap: onBack ?? () => Navigator.of(context).pop(),
+          child: Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: const Color(0xFFF5F5F7),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: const Icon(Icons.arrow_back_ios_new, size: 18, color: Color(0xFF1D1D1F)),
+          ),
+        ),
+        const SizedBox(width: 14),
+        Text(
+          'AI STYLE STUDIO',
+          style: GoogleFonts.inter(
+            fontSize: 16,
+            fontWeight: FontWeight.w800,
+            color: const Color(0xFF1D1D1F),
+            letterSpacing: 1.5,
+          ),
+        ),
+      ],
+    ).animate().fadeIn(duration: 300.ms);
+  }
 
   Widget _buildInitialView() {
     return SingleChildScrollView(
@@ -182,91 +209,44 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
     );
   }
 
-  Widget _buildHeader() {
-    return Row(
-      children: [
-        GestureDetector(
-          onTap: () => Navigator.of(context).pop(),
-          child: Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: const Color(0xFFF5F5F7),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: const Icon(Icons.arrow_back_ios_new, size: 18, color: Color(0xFF1D1D1F)),
-          ),
-        ),
-        const SizedBox(width: 14),
-        Text(
-          'AI Style Studio',
-          style: GoogleFonts.inter(
-            fontSize: 20,
-            fontWeight: FontWeight.w700,
-            color: const Color(0xFF1D1D1F),
-          ),
-        ),
-      ],
-    ).animate().fadeIn(duration: 300.ms);
-  }
-
   Widget _buildHeroCard() {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(28),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xFF7C4DFF), Color(0xFFB388FF)],
-        ),
+        color: const Color(0xFF1D1D1F),
         borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF7C4DFF).withOpacity(0.35),
-            blurRadius: 24,
-            offset: const Offset(0, 8),
-          ),
-        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(14),
-            ),
-            child: const Icon(Icons.auto_awesome, color: Colors.white, size: 24),
-          ),
-          const SizedBox(height: 20),
           Text(
-            'Analyze Any Outfit ✨',
+            'JUST ANALYZE IT.',
             style: GoogleFonts.inter(
-              fontSize: 24,
-              fontWeight: FontWeight.w700,
+              fontSize: 32,
+              fontWeight: FontWeight.w900,
               color: Colors.white,
+              letterSpacing: -0.5,
+              height: 1.1,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 12),
           Text(
-            'Upload a fashion photo and let AI identify the style, colors, clothing pieces and overall look.',
+            'Upload a photo. Get instant style intelligence — colors, fit, score.',
             style: GoogleFonts.inter(
               fontSize: 14,
-              color: Colors.white.withOpacity(0.85),
+              color: Colors.white.withOpacity(0.6),
               height: 1.5,
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 28),
           Row(
             children: [
               Expanded(
                 child: _buildActionBtn(
                   icon: Icons.camera_alt_outlined,
-                  label: 'Take Photo',
-                  isLight: true,
+                  label: 'CAMERA',
+                  isWhite: true,
                   onTap: () => _pickImage(ImageSource.camera),
                 ),
               ),
@@ -274,8 +254,8 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
               Expanded(
                 child: _buildActionBtn(
                   icon: Icons.photo_library_outlined,
-                  label: 'Gallery',
-                  isLight: false,
+                  label: 'GALLERY',
+                  isWhite: false,
                   onTap: () => _pickImage(ImageSource.gallery),
                 ),
               ),
@@ -289,7 +269,7 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
   Widget _buildActionBtn({
     required IconData icon,
     required String label,
-    required bool isLight,
+    required bool isWhite,
     required VoidCallback onTap,
   }) {
     return GestureDetector(
@@ -299,23 +279,24 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
-        padding: const EdgeInsets.symmetric(vertical: 14),
+        padding: const EdgeInsets.symmetric(vertical: 16),
         decoration: BoxDecoration(
-          color: isLight ? Colors.white : Colors.white.withOpacity(0.2),
+          color: isWhite ? Colors.white : Colors.transparent,
           borderRadius: BorderRadius.circular(14),
-          border: isLight ? null : Border.all(color: Colors.white.withOpacity(0.4)),
+          border: isWhite ? null : Border.all(color: Colors.white.withOpacity(0.3), width: 1.5),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 18, color: isLight ? const Color(0xFF7C4DFF) : Colors.white),
+            Icon(icon, size: 18, color: isWhite ? const Color(0xFF1D1D1F) : Colors.white),
             const SizedBox(width: 8),
             Text(
               label,
               style: GoogleFonts.inter(
                 fontSize: 13,
-                fontWeight: FontWeight.w600,
-                color: isLight ? const Color(0xFF7C4DFF) : Colors.white,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 0.8,
+                color: isWhite ? const Color(0xFF1D1D1F) : Colors.white,
               ),
             ),
           ],
@@ -331,7 +312,7 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Pick an outfit photo to analyze!'),
-            backgroundColor: Color(0xFF7C4DFF),
+            backgroundColor: Color(0xFF1D1D1F),
             duration: Duration(seconds: 1),
           ),
         );
@@ -340,21 +321,20 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           decoration: BoxDecoration(
-            color: const Color(0xFFF0EBFF),
+            color: const Color(0xFFF5F5F7),
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: const Color(0xFFE0D6FF)),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.explore_outlined, size: 16, color: const Color(0xFF7C4DFF)),
+              const Icon(Icons.explore_outlined, size: 16, color: Color(0xFF1D1D1F)),
               const SizedBox(width: 8),
               Text(
                 'Try with an example',
                 style: GoogleFonts.inter(
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: const Color(0xFF7C4DFF),
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xFF1D1D1F),
                 ),
               ),
             ],
@@ -363,8 +343,6 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
       ),
     ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
   }
-
-  // ─── PREVIEW VIEW ───────────────────────────────
 
   Widget _buildPreviewView() {
     return SingleChildScrollView(
@@ -408,7 +386,7 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
               Expanded(
                 child: _buildSmallBtn(
                   icon: Icons.refresh,
-                  label: 'Retake',
+                  label: 'RETAKE',
                   onTap: _reset,
                 ),
               ),
@@ -416,7 +394,7 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
               Expanded(
                 child: _buildSmallBtn(
                   icon: Icons.photo_library_outlined,
-                  label: 'Change Image',
+                  label: 'CHANGE',
                   onTap: () => _pickImage(ImageSource.gallery),
                 ),
               ),
@@ -434,7 +412,7 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
               onChanged: (v) => setState(() => _userQuestion = v),
               style: GoogleFonts.inter(fontSize: 14),
               decoration: InputDecoration(
-                hintText: 'What would you like to know about this outfit?',
+                hintText: 'Ask about this outfit...',
                 hintStyle: GoogleFonts.inter(
                   fontSize: 14,
                   color: Colors.grey.shade400,
@@ -452,7 +430,7 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
               _suggestionChip('How can I improve this look?'),
               _suggestionChip('Suggest similar outfits'),
               _suggestionChip('Make this more formal'),
-              _suggestionChip('What colors would work better?'),
+              _suggestionChip('What colors work better?'),
             ],
           ),
           if (_analyzeError != null)
@@ -465,7 +443,7 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
                 const Icon(Icons.error_outline, size: 18, color: Color(0xFFEF4444)),
                 const SizedBox(width: 8),
                 Expanded(child: Text(_analyzeError!, style: GoogleFonts.inter(fontSize: 12, color: const Color(0xFF991B1B), fontWeight: FontWeight.w500))),
-                TextButton(onPressed: _analyzeImage, child: Text('Retry', style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w700, color: const Color(0xFFEF4444)))),
+                TextButton(onPressed: _analyzeImage, child: Text('RETRY', style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w700, color: const Color(0xFF1D1D1F)))),
               ]),
             ),
           const SizedBox(height: 24),
@@ -492,19 +470,19 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
         decoration: BoxDecoration(
           color: const Color(0xFFF5F5F7),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: const Color(0xFFE8E8E8)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 16, color: const Color(0xFF333333)),
+            Icon(icon, size: 16, color: const Color(0xFF1D1D1F)),
             const SizedBox(width: 6),
             Text(
               label,
               style: GoogleFonts.inter(
                 fontSize: 13,
-                fontWeight: FontWeight.w500,
-                color: const Color(0xFF333333),
+                fontWeight: FontWeight.w600,
+                letterSpacing: 0.5,
+                color: const Color(0xFF1D1D1F),
               ),
             ),
           ],
@@ -524,18 +502,15 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFF7C4DFF) : const Color(0xFFF0EBFF),
+          color: isSelected ? const Color(0xFF1D1D1F) : const Color(0xFFF5F5F7),
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: isSelected ? const Color(0xFF7C4DFF) : const Color(0xFFE0D6FF),
-          ),
         ),
         child: Text(
           text,
           style: GoogleFonts.inter(
             fontSize: 12,
             fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-            color: isSelected ? Colors.white : const Color(0xFF7C4DFF),
+            color: isSelected ? Colors.white : const Color(0xFF1D1D1F),
           ),
         ),
       ),
@@ -550,19 +525,10 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
       },
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        padding: const EdgeInsets.symmetric(vertical: 18),
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Color(0xFF7C4DFF), Color(0xFFB388FF)],
-          ),
+          color: const Color(0xFF1D1D1F),
           borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: const Color(0xFF7C4DFF).withOpacity(0.3),
-              blurRadius: 16,
-              offset: const Offset(0, 6),
-            ),
-          ],
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -570,10 +536,11 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
             const Icon(Icons.auto_awesome, color: Colors.white, size: 20),
             const SizedBox(width: 10),
             Text(
-              'Analyze My Outfit',
+              'ANALYZE MY OUTFIT',
               style: GoogleFonts.inter(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
+                fontSize: 15,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 1.0,
                 color: Colors.white,
               ),
             ),
@@ -593,21 +560,21 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 14),
         decoration: BoxDecoration(
-          color: const Color(0xFFF0EBFF),
+          color: const Color(0xFFF5F5F7),
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: const Color(0xFFE0D6FF)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.chat_bubble_outline, size: 18, color: _userQuestion != null ? const Color(0xFF7C4DFF) : Colors.grey.shade400),
+            Icon(Icons.chat_bubble_outline, size: 18, color: _userQuestion != null ? const Color(0xFF1D1D1F) : Colors.grey.shade400),
             const SizedBox(width: 8),
             Text(
-              _isAskingQuestion ? 'Thinking...' : 'Ask AI',
+              _isAskingQuestion ? 'THINKING...' : 'ASK AI',
               style: GoogleFonts.inter(
                 fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: _userQuestion != null ? const Color(0xFF7C4DFF) : Colors.grey.shade400,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 0.8,
+                color: _userQuestion != null ? const Color(0xFF1D1D1F) : Colors.grey.shade400,
               ),
             ),
           ],
@@ -615,8 +582,6 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
       ),
     ).animate().fadeIn(delay: 300.ms, duration: 400.ms);
   }
-
-  // ─── RESULT VIEW ────────────────────────────────
 
   Widget _buildResultView() {
     if (_analysis == null) return const SizedBox();
@@ -635,27 +600,23 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
                     width: double.infinity,
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [Color(0xFFF8F6FF), Color(0xFFF0EBFF)],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
+                      color: const Color(0xFFF5F5F7),
                       borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: const Color(0xFFE8E0FF)),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           children: [
-                            const Icon(Icons.auto_awesome, size: 16, color: Color(0xFF7C4DFF)),
+                            const Icon(Icons.auto_awesome, size: 16, color: Color(0xFFFA5400)),
                             const SizedBox(width: 8),
                             Text(
-                              'AI Answer',
+                              'AI ANSWER',
                               style: GoogleFonts.inter(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w700,
-                                color: const Color(0xFF7C4DFF),
+                                fontSize: 11,
+                                fontWeight: FontWeight.w800,
+                                letterSpacing: 1.0,
+                                color: const Color(0xFFFA5400),
                               ),
                             ),
                           ],
@@ -675,10 +636,11 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
                 ],
                 const SizedBox(height: 16),
                 Text(
-                  'Your Style Breakdown',
+                  'STYLE BREAKDOWN',
                   style: GoogleFonts.inter(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 1.5,
                     color: const Color(0xFF1D1D1F),
                   ),
                 ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
@@ -743,10 +705,11 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
         const SizedBox(width: 14),
         Expanded(
           child: Text(
-            'AI Style Studio',
+            'AI STYLE STUDIO',
             style: GoogleFonts.inter(
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
+              fontSize: 16,
+              fontWeight: FontWeight.w800,
+              letterSpacing: 1.5,
               color: const Color(0xFF1D1D1F),
             ),
           ),
@@ -781,24 +744,21 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
           child: Container(
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [Color(0xFFF8F6FF), Color(0xFFF0EBFF)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
+              color: const Color(0xFFF5F5F7),
               borderRadius: BorderRadius.circular(14),
-              border: Border.all(color: const Color(0xFFE8E0FF)),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Icon(Icons.texture, size: 18, color: Color(0xFF7C4DFF)),
+                const Icon(Icons.texture, size: 18, color: Color(0xFF1D1D1F)),
                 const SizedBox(height: 8),
                 Text(
-                  'Fabric / Texture',
+                  'FABRIC',
                   style: GoogleFonts.inter(
-                    fontSize: 12,
-                    color: Colors.grey.shade500,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 1.0,
+                    color: const Color(0xFF8E8E93),
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -819,24 +779,21 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
           child: Container(
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [Color(0xFFF8F6FF), Color(0xFFF0EBFF)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
+              color: const Color(0xFFF5F5F7),
               borderRadius: BorderRadius.circular(14),
-              border: Border.all(color: const Color(0xFFE8E0FF)),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Icon(Icons.event, size: 18, color: Color(0xFF7C4DFF)),
+                const Icon(Icons.event, size: 18, color: Color(0xFF1D1D1F)),
                 const SizedBox(height: 8),
                 Text(
-                  'Occasion',
+                  'OCCASION',
                   style: GoogleFonts.inter(
-                    fontSize: 12,
-                    color: Colors.grey.shade500,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 1.0,
+                    color: const Color(0xFF8E8E93),
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -873,7 +830,7 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
               height: 32,
               child: CircularProgressIndicator(
                 strokeWidth: 3,
-                color: Color(0xFF7C4DFF),
+                color: Color(0xFF1D1D1F),
               ),
             ),
             const SizedBox(height: 16),
@@ -895,10 +852,11 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
         children: [
           const SizedBox(height: 16),
           Text(
-            'Transformed Look',
+            'TRANSFORMED LOOK',
             style: GoogleFonts.inter(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
+              fontSize: 14,
+              fontWeight: FontWeight.w800,
+              letterSpacing: 1.5,
               color: const Color(0xFF1D1D1F),
             ),
           ),
@@ -932,8 +890,6 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
     return const SizedBox();
   }
 
-  // ─── BOTTOM ACTIONS ─────────────────────────────
-
   Widget _buildBottomActions() {
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
@@ -954,13 +910,13 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
               Expanded(
                 child: _buildBottomBtn(
                   icon: Icons.bookmark_outline,
-                  label: 'Save',
+                  label: 'SAVE',
                   onTap: () {
                     HapticFeedback.lightImpact();
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Analysis saved!'),
-                        backgroundColor: Color(0xFF34C759),
+                        backgroundColor: Color(0xFF1D1D1F),
                         duration: Duration(seconds: 1),
                       ),
                     );
@@ -971,7 +927,7 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
               Expanded(
                 child: _buildBottomBtn(
                   icon: Icons.share_outlined,
-                  label: 'Share',
+                  label: 'SHARE',
                   onTap: () {
                     HapticFeedback.lightImpact();
                     Share.share(
@@ -992,16 +948,17 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 14),
               decoration: BoxDecoration(
-                color: const Color(0xFF7C4DFF).withOpacity(0.08),
+                color: const Color(0xFFF5F5F7),
                 borderRadius: BorderRadius.circular(14),
               ),
               child: Center(
                 child: Text(
-                  'Analyze Another Outfit',
+                  'ANALYZE ANOTHER OUTFIT',
                   style: GoogleFonts.inter(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: const Color(0xFF7C4DFF),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 1.0,
+                    color: const Color(0xFF1D1D1F),
                   ),
                 ),
               ),
@@ -1028,14 +985,15 @@ class _StyleAnalyzerScreenState extends State<StyleAnalyzerScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 16, color: const Color(0xFF333333)),
+            Icon(icon, size: 16, color: const Color(0xFF1D1D1F)),
             const SizedBox(width: 6),
             Text(
               label,
               style: GoogleFonts.inter(
                 fontSize: 13,
-                fontWeight: FontWeight.w500,
-                color: const Color(0xFF333333),
+                fontWeight: FontWeight.w600,
+                letterSpacing: 0.5,
+                color: const Color(0xFF1D1D1F),
               ),
             ),
           ],

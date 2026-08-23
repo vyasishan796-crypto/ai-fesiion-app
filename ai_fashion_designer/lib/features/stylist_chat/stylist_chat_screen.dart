@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
-import '../../../core/theme/app_colors.dart';
 import 'package:ai_fashion_designer/features/stylist_chat/models/chat_message.dart';
 import 'package:ai_fashion_designer/features/stylist_chat/services/advanced_stylist_service.dart';
 import 'package:ai_fashion_designer/features/stylist_chat/widgets/ai_thinking_indicator.dart';
@@ -35,7 +34,7 @@ class _StylistChatScreenState extends State<StylistChatScreen> {
       sender: Sender.ai,
       timestamp: DateTime.now(),
       type: MessageType.text,
-      text: 'Hey! I\'m StyleAI — your AI fashion stylist. I can create outfits, suggest products, advise on colors, and more. What can I help you with?',
+      text: "Hey! I'm your AI stylist. Ask me anything — outfits, colors, products, trends. Let's go.",
     ));
   }
 
@@ -85,7 +84,7 @@ class _StylistChatScreenState extends State<StylistChatScreen> {
     } catch (e) {
       if (mounted) {
         setState(() {
-          _messages.add(ChatMessage.error('Sorry, something went wrong. Please try again.'));
+          _messages.add(ChatMessage.error('Sorry, something went wrong. Try again.'));
           _isThinking = false;
         });
       }
@@ -108,10 +107,10 @@ class _StylistChatScreenState extends State<StylistChatScreen> {
     switch (_context) {
       case 'shopping':
         return [
-          QuickAction(label: 'Under ₹1000', icon: Icons.attach_money, onTap: () => _sendMessage('Show me products under ₹1000')),
-          QuickAction(label: 'Best Deals', icon: Icons.local_offer, onTap: () => _sendMessage('What are the best fashion deals right now?')),
+          QuickAction(label: 'Under ₹1000', icon: Icons.attach_money, onTap: () => _sendMessage('Products under ₹1000')),
+          QuickAction(label: 'Best Deals', icon: Icons.local_offer, onTap: () => _sendMessage('Best fashion deals right now')),
           QuickAction(label: 'My Size', icon: Icons.straighten, onTap: () => _sendMessage('What is my recommended size?')),
-          QuickAction(label: 'Compare Prices', icon: Icons.compare_arrows, onTap: () => _sendMessage('Compare prices across platforms')),
+          QuickAction(label: 'Compare', icon: Icons.compare_arrows, onTap: () => _sendMessage('Compare prices across platforms')),
         ];
       case 'outfit':
         return [
@@ -123,22 +122,22 @@ class _StylistChatScreenState extends State<StylistChatScreen> {
       case 'color':
         return [
           QuickAction(label: 'Skin Match', icon: Icons.face, onTap: () => _sendMessage('What colors suit my skin tone?')),
-          QuickAction(label: 'Neutral Palette', icon: Icons.palette, onTap: () => _sendMessage('Suggest a neutral color palette')),
-          QuickAction(label: 'Bold Colors', icon: Icons.brush, onTap: () => _sendMessage('Suggest bold color combinations')),
+          QuickAction(label: 'Neutrals', icon: Icons.palette, onTap: () => _sendMessage('Suggest a neutral color palette')),
+          QuickAction(label: 'Bold Colors', icon: Icons.brush, onTap: () => _sendMessage('Bold color combinations')),
           QuickAction(label: 'Monochrome', icon: Icons.gradient, onTap: () => _sendMessage('Monochrome outfit ideas')),
         ];
       case 'tips':
         return [
-          QuickAction(label: 'Summer Tips', icon: Icons.wb_sunny, onTap: () => _sendMessage('Summer styling tips for India')),
+          QuickAction(label: 'Summer', icon: Icons.wb_sunny, onTap: () => _sendMessage('Summer styling tips')),
           QuickAction(label: 'Fit Guide', icon: Icons.accessibility_new, onTap: () => _sendMessage('How should clothes fit properly?')),
           QuickAction(label: 'Wardrobe', icon: Icons.checkroom, onTap: () => _sendMessage('Essential wardrobe basics')),
-          QuickAction(label: 'Trends', icon: Icons.trending_up, onTap: () => _sendMessage('What are the current fashion trends?')),
+          QuickAction(label: 'Trends', icon: Icons.trending_up, onTap: () => _sendMessage('Current fashion trends')),
         ];
       default:
         return [
           QuickAction(label: 'Create Outfit', icon: Icons.auto_awesome, onTap: () => _sendMessage('Create a casual outfit for me')),
           QuickAction(label: 'Find Products', icon: Icons.search, onTap: () => _sendMessage('Find trending products')),
-          QuickAction(label: 'Style Tips', icon: Icons.lightbulb_outline, onTap: () => _sendMessage('Give me 3 quick style tips')),
+          QuickAction(label: 'Style Tips', icon: Icons.lightbulb_outline, onTap: () => _sendMessage('3 quick style tips')),
           QuickAction(label: 'Color Match', icon: Icons.palette, onTap: () => _sendMessage('Suggest colors that go together')),
         ];
     }
@@ -147,36 +146,46 @@ class _StylistChatScreenState extends State<StylistChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: AppColors.charcoal,
+        backgroundColor: const Color(0xFF1D1D1F),
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, size: 20, color: AppColors.white),
+          icon: const Icon(Icons.arrow_back_ios_new, size: 20, color: Colors.white),
           onPressed: () => context.pop(),
         ),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(
+              'AI STYLIST',
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 1.5,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 2),
             Row(
               children: [
                 Container(
-                  width: 8, height: 8,
+                  width: 6,
+                  height: 6,
                   decoration: const BoxDecoration(
-                    color: Color(0xFF10B981),
+                    color: Color(0xFF34C759),
                     shape: BoxShape.circle,
                   ),
                 ),
-                const SizedBox(width: 6),
+                const SizedBox(width: 4),
                 Text(
-                  'AI Stylist',
-                  style: GoogleFonts.inter(fontSize: 17, fontWeight: FontWeight.w700, color: AppColors.white),
+                  'Online',
+                  style: GoogleFonts.inter(
+                    fontSize: 10,
+                    color: Colors.white.withOpacity(0.5),
+                  ),
                 ),
               ],
-            ),
-            Text(
-              'Powered by Gemini AI',
-              style: GoogleFonts.inter(fontSize: 11, color: Colors.white.withOpacity(0.5)),
             ),
           ],
         ),
@@ -195,7 +204,7 @@ class _StylistChatScreenState extends State<StylistChatScreen> {
                 _aiService.clearHistory();
               });
             },
-            icon: const Icon(Icons.refresh, color: AppColors.white, size: 22),
+            icon: const Icon(Icons.refresh, color: Colors.white, size: 22),
             tooltip: 'Clear chat',
           ),
         ],
@@ -243,13 +252,18 @@ class _StylistChatScreenState extends State<StylistChatScreen> {
         alignment: Alignment.centerRight,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          decoration: BoxDecoration(
-            gradient: AppColors.primaryGradient,
-            borderRadius: BorderRadius.circular(18).copyWith(bottomRight: Radius.circular(4)),
+          decoration: const BoxDecoration(
+            color: Color(0xFF1D1D1F),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(18),
+              topRight: Radius.circular(18),
+              bottomLeft: Radius.circular(18),
+              bottomRight: Radius.circular(4),
+            ),
           ),
           child: Text(
             msg.text ?? '',
-            style: GoogleFonts.inter(fontSize: 15, color: AppColors.white, height: 1.4),
+            style: GoogleFonts.inter(fontSize: 15, color: Colors.white, height: 1.4),
           ),
         ),
       ),
@@ -298,16 +312,24 @@ class _StylistChatScreenState extends State<StylistChatScreen> {
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: AppColors.lightGrey,
+                color: const Color(0xFFF5F5F7),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(rec.title, style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w700, color: AppColors.ink)),
+                  Text(
+                    rec.title.toUpperCase(),
+                    style: GoogleFonts.inter(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 1.0,
+                      color: const Color(0xFF1D1D1F),
+                    ),
+                  ),
                   if (rec.subtitle.isNotEmpty) ...[
                     const SizedBox(height: 4),
-                    Text(rec.subtitle, style: GoogleFonts.inter(fontSize: 12, color: AppColors.inkMuted)),
+                    Text(rec.subtitle, style: GoogleFonts.inter(fontSize: 12, color: const Color(0xFF8E8E93))),
                   ],
                   const SizedBox(height: 12),
                   ...rec.items.map((item) => Padding(
@@ -315,10 +337,10 @@ class _StylistChatScreenState extends State<StylistChatScreen> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Icon(Icons.check_circle, size: 16, color: AppColors.accentPurple),
+                        const Icon(Icons.check_circle, size: 16, color: Color(0xFF1D1D1F)),
                         const SizedBox(width: 8),
                         Expanded(
-                          child: Text(item, style: GoogleFonts.inter(fontSize: 13, color: AppColors.ink, height: 1.3)),
+                          child: Text(item, style: GoogleFonts.inter(fontSize: 13, color: const Color(0xFF1D1D1F), height: 1.3)),
                         ),
                       ],
                     ),
@@ -337,15 +359,14 @@ class _StylistChatScreenState extends State<StylistChatScreen> {
         child: Container(
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
-            color: AppColors.error.withOpacity(0.06),
+            color: const Color(0xFFFFF2F2),
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: AppColors.error.withOpacity(0.2)),
           ),
           child: Row(
             children: [
-              const Icon(Icons.error_outline, color: AppColors.error, size: 20),
+              const Icon(Icons.error_outline, color: Color(0xFFEF4444), size: 20),
               const SizedBox(width: 10),
-              Expanded(child: Text(msg.text ?? '', style: GoogleFonts.inter(fontSize: 13, color: AppColors.error))),
+              Expanded(child: Text(msg.text ?? '', style: GoogleFonts.inter(fontSize: 13, color: const Color(0xFFEF4444)))),
             ],
           ),
         ),
@@ -363,13 +384,18 @@ class _StylistChatScreenState extends State<StylistChatScreen> {
       alignment: Alignment.centerLeft,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        decoration: BoxDecoration(
-          color: AppColors.lightGrey,
-          borderRadius: BorderRadius.circular(18).copyWith(bottomLeft: Radius.circular(4)),
+        decoration: const BoxDecoration(
+          color: Color(0xFFF5F5F7),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(4),
+            topRight: Radius.circular(18),
+            bottomLeft: Radius.circular(18),
+            bottomRight: Radius.circular(18),
+          ),
         ),
         child: Text(
           text,
-          style: GoogleFonts.inter(fontSize: 15, color: AppColors.ink, height: 1.5),
+          style: GoogleFonts.inter(fontSize: 15, color: const Color(0xFF1D1D1F), height: 1.5),
         ),
       ),
     );

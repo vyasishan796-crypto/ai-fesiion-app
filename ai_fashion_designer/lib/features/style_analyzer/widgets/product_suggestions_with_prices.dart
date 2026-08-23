@@ -25,12 +25,12 @@ class ProductSuggestionsWithPrices extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(6),
               decoration: BoxDecoration(
-                color: const Color(0xFF7C4DFF).withOpacity(0.1),
+                color: const Color(0xFF1D1D1F),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Icon(
                 Icons.shopping_bag_outlined,
-                color: Color(0xFF7C4DFF),
+                color: Colors.white,
                 size: 18,
               ),
             ),
@@ -40,16 +40,17 @@ class ProductSuggestionsWithPrices extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Shop This Look',
+                    'SHOP THIS LOOK',
                     style: GoogleFonts.inter(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 1.5,
                       color: const Color(0xFF1D1D1F),
                     ),
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    'Best prices across platforms for your style',
+                    'Best prices across platforms',
                     style: GoogleFonts.inter(
                       fontSize: 12,
                       color: const Color(0xFF8E8E93),
@@ -61,7 +62,7 @@ class ProductSuggestionsWithPrices extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
-                color: const Color(0xFF7C4DFF).withOpacity(0.08),
+                color: const Color(0xFFF5F5F7),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(
@@ -69,7 +70,7 @@ class ProductSuggestionsWithPrices extends StatelessWidget {
                 style: GoogleFonts.inter(
                   fontSize: 11,
                   fontWeight: FontWeight.w600,
-                  color: const Color(0xFF7C4DFF),
+                  color: const Color(0xFF1D1D1F),
                 ),
               ),
             ),
@@ -273,18 +274,9 @@ class _ProductCardState extends State<_ProductCard> {
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: widget.matchScore >= 80
-              ? const Color(0xFF7C4DFF).withOpacity(0.3)
+              ? const Color(0xFF1D1D1F).withOpacity(0.2)
               : const Color(0xFFF0F0F5),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: widget.matchScore >= 80
-                ? const Color(0xFF7C4DFF).withOpacity(0.08)
-                : Colors.black.withOpacity(0.04),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -313,7 +305,7 @@ class _ProductCardState extends State<_ProductCard> {
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                     color: widget.matchScore >= 80
-                        ? const Color(0xFF7C4DFF)
+                        ? const Color(0xFF1D1D1F)
                         : widget.matchScore >= 60
                             ? const Color(0xFFFF9500)
                             : const Color(0xFF8E8E93),
@@ -392,7 +384,7 @@ class _ProductCardState extends State<_ProductCard> {
                           style: GoogleFonts.inter(
                             fontSize: 16,
                             fontWeight: FontWeight.w800,
-                            color: const Color(0xFF34C759),
+                            color: const Color(0xFF1D1D1F),
                           ),
                         ),
                         const SizedBox(width: 4),
@@ -401,7 +393,7 @@ class _ProductCardState extends State<_ProductCard> {
                           style: GoogleFonts.inter(
                             fontSize: 10,
                             fontWeight: FontWeight.w500,
-                            color: const Color(0xFF34C759),
+                            color: const Color(0xFF8E8E93),
                           ),
                         ),
                       ],
@@ -415,8 +407,8 @@ class _ProductCardState extends State<_ProductCard> {
                             _expanded ? 'Hide prices' : 'Compare ${sortedPrices.length} platforms',
                             style: GoogleFonts.inter(
                               fontSize: 10,
-                              fontWeight: FontWeight.w500,
-                              color: const Color(0xFF7C4DFF),
+                              fontWeight: FontWeight.w600,
+                              color: const Color(0xFF1D1D1F),
                             ),
                           ),
                           const SizedBox(width: 2),
@@ -425,7 +417,7 @@ class _ProductCardState extends State<_ProductCard> {
                                 ? Icons.keyboard_arrow_up
                                 : Icons.keyboard_arrow_down,
                             size: 14,
-                            color: const Color(0xFF7C4DFF),
+                            color: const Color(0xFF1D1D1F),
                           ),
                         ],
                       ),

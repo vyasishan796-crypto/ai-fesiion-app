@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
-import '../../../core/theme/app_colors.dart';
 
 class ChatComposer extends StatefulWidget {
   final Function(String) onSend;
@@ -59,11 +58,8 @@ class _ChatComposerState extends State<ChatComposer> {
       if (!_speechAvailable) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(
-              'Microphone permission denied. Please enable it in Settings.',
-              style: GoogleFonts.inter(),
-            ),
-            backgroundColor: AppColors.charcoal,
+            content: Text('Mic permission denied. Enable in Settings.', style: GoogleFonts.inter()),
+            backgroundColor: const Color(0xFF1D1D1F),
             behavior: SnackBarBehavior.floating,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           ),
@@ -101,9 +97,9 @@ class _ChatComposerState extends State<ChatComposer> {
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 10, 16, 24),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: Colors.white,
         boxShadow: [
-          BoxShadow(color: AppColors.charcoal.withOpacity(0.05), blurRadius: 12, offset: const Offset(0, -2)),
+          BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 12, offset: const Offset(0, -2)),
         ],
       ),
       child: SafeArea(
@@ -116,7 +112,7 @@ class _ChatComposerState extends State<ChatComposer> {
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 margin: const EdgeInsets.only(bottom: 8),
                 decoration: BoxDecoration(
-                  color: AppColors.error.withOpacity(0.08),
+                  color: const Color(0xFF1D1D1F).withOpacity(0.06),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Row(
@@ -125,19 +121,20 @@ class _ChatComposerState extends State<ChatComposer> {
                       duration: const Duration(milliseconds: 500),
                       width: 10,
                       height: 10,
-                      decoration: BoxDecoration(
-                        color: AppColors.error,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFEF4444),
                         shape: BoxShape.circle,
                       ),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
                       child: Text(
-                        'Listening... Speak now',
+                        'LISTENING...',
                         style: GoogleFonts.inter(
-                          fontSize: 13,
-                          color: AppColors.error,
-                          fontWeight: FontWeight.w600,
+                          fontSize: 11,
+                          color: const Color(0xFF1D1D1F),
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 1.0,
                         ),
                       ),
                     ),
@@ -146,7 +143,7 @@ class _ChatComposerState extends State<ChatComposer> {
                         await _speech.stop();
                         setState(() => _isListening = false);
                       },
-                      child: Icon(Icons.close, size: 18, color: AppColors.error),
+                      child: const Icon(Icons.close, size: 18, color: Color(0xFF8E8E93)),
                     ),
                   ],
                 ),
@@ -161,12 +158,12 @@ class _ChatComposerState extends State<ChatComposer> {
                     width: 40,
                     height: 40,
                     decoration: BoxDecoration(
-                      color: _isListening ? AppColors.error : AppColors.lightGrey,
+                      color: _isListening ? const Color(0xFFEF4444) : const Color(0xFFF5F5F7),
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
                       _isListening ? Icons.mic : Icons.mic_none,
-                      color: _isListening ? AppColors.white : AppColors.inkMuted,
+                      color: _isListening ? Colors.white : const Color(0xFF8E8E93),
                       size: 20,
                     ),
                   ),
@@ -176,7 +173,7 @@ class _ChatComposerState extends State<ChatComposer> {
                   child: Container(
                     constraints: const BoxConstraints(maxHeight: 120),
                     decoration: BoxDecoration(
-                      color: AppColors.lightGrey,
+                      color: const Color(0xFFF5F5F7),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: TextField(
@@ -184,10 +181,10 @@ class _ChatComposerState extends State<ChatComposer> {
                       maxLines: null,
                       textInputAction: TextInputAction.newline,
                       onChanged: (val) => setState(() => _hasText = val.trim().isNotEmpty),
-                      style: GoogleFonts.inter(fontSize: 15, color: AppColors.ink),
+                      style: GoogleFonts.inter(fontSize: 15, color: const Color(0xFF1D1D1F)),
                       decoration: InputDecoration(
-                        hintText: _isListening ? 'Listening...' : 'Ask AI Stylist anything...',
-                        hintStyle: GoogleFonts.inter(fontSize: 15, color: AppColors.inkMuted),
+                        hintText: _isListening ? 'Listening...' : 'Ask anything...',
+                        hintStyle: GoogleFonts.inter(fontSize: 15, color: const Color(0xFF8E8E93)),
                         border: InputBorder.none,
                         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                       ),
@@ -201,13 +198,12 @@ class _ChatComposerState extends State<ChatComposer> {
                     width: 40,
                     height: 40,
                     decoration: BoxDecoration(
-                      gradient: _hasText ? AppColors.primaryGradient : null,
-                      color: _hasText ? null : AppColors.mediumGrey,
+                      color: _hasText ? const Color(0xFF1D1D1F) : const Color(0xFFF5F5F7),
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
                       Icons.send,
-                      color: _hasText ? AppColors.white : AppColors.inkMuted,
+                      color: _hasText ? Colors.white : const Color(0xFF8E8E93),
                       size: 18,
                     ),
                   ),

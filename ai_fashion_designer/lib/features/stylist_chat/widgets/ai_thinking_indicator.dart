@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../core/theme/app_colors.dart';
 
 class AIThinkingIndicator extends StatefulWidget {
   const AIThinkingIndicator({super.key});
@@ -50,7 +48,7 @@ class _AIThinkingIndicatorState extends State<AIThinkingIndicator>
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
-            color: AppColors.primary.withOpacity(0.06),
+            color: const Color(0xFFF5F5F7),
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
@@ -59,14 +57,16 @@ class _AIThinkingIndicatorState extends State<AIThinkingIndicator>
               Icon(
                 Icons.auto_awesome,
                 size: 16,
-                color: AppColors.primary.withOpacity(_glowAnimation.value),
+                color: Color(0xFF1D1D1F).withOpacity(_glowAnimation.value),
               ),
               const SizedBox(width: 8),
               Text(
-                'AI Stylist is thinking',
+                'THINKING',
                 style: GoogleFonts.inter(
-                  fontSize: 13,
-                  color: AppColors.primary.withOpacity(0.7),
+                  fontSize: 11,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 1.0,
+                  color: const Color(0xFF8E8E93),
                 ),
               ),
               const SizedBox(width: 6),
@@ -87,7 +87,7 @@ class _AIThinkingIndicatorState extends State<AIThinkingIndicator>
       width: 6,
       height: 6,
       decoration: BoxDecoration(
-        color: AppColors.primary.withOpacity(0.3 + (value * 0.7)),
+        color: const Color(0xFF1D1D1F).withOpacity(0.3 + (value * 0.7)),
         shape: BoxShape.circle,
       ),
     );
