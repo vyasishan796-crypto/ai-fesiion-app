@@ -249,7 +249,7 @@ class _ScanQualityScreenState extends State<ScanQualityScreen> {
         child: ElevatedButton(
           onPressed: () {
             HapticFeedback.lightImpact();
-            context.push('/body-scan/processing');
+            context.push('/home/body-scan/processing');
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.transparent,

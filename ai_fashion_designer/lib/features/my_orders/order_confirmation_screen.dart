@@ -84,7 +84,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                   width: double.infinity,
                   height: 52,
                   child: GestureDetector(
-                    onTap: () => context.push('/order-detail', extra: orderId),
+                    onTap: () => context.push('/orders/order-detail', extra: orderId),
                     child: Container(decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1.5), borderRadius: BorderRadius.circular(30)), child: Center(child: Text('VIEW ORDER', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w700, color: Colors.black, letterSpacing: 1)))),
                   ),
                 ),

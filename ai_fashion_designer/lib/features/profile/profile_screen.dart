@@ -58,11 +58,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
-          color: Colors.white,
-          onPressed: () => Navigator.pop(context),
-        ),
+        leading: Navigator.canPop(context)
+            ? IconButton(
+                icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
+                color: Colors.white,
+                onPressed: () => Navigator.pop(context),
+              )
+            : null,
         centerTitle: true,
         title: Text('PROFILE', style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w800, color: Colors.white, letterSpacing: 2)),
       ),
@@ -161,7 +163,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: GestureDetector(
-        onTap: () => context.push('/body-measurement/upload'),
+        onTap: () => context.push('/profile/body-measurement/upload'),
         child: Container(
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(14), border: Border.all(color: Colors.grey[200]!)),
@@ -187,30 +189,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _menuGroup('AI FEATURES', [
-            _menuItem(Icons.auto_awesome_rounded, 'AI Style Analyzer', () => context.push('/style-analyzer')),
-            _menuItem(Icons.chat_bubble_outline_rounded, 'AI Stylist Chat', () => context.push('/stylist-chat')),
-            _menuItem(Icons.straighten_rounded, 'Body Measurement', () => context.push('/body-measurement/upload')),
+            _menuItem(Icons.auto_awesome_rounded, 'AI Style Analyzer', () => context.push('/profile/style-analyzer')),
+            _menuItem(Icons.chat_bubble_outline_rounded, 'AI Stylist Chat', () => context.push('/profile/stylist-chat')),
+            _menuItem(Icons.straighten_rounded, 'Body Measurement', () => context.push('/profile/body-measurement/upload')),
           ]),
           const SizedBox(height: 18),
           if (AuthService.isLoggedIn) ...[
             _menuGroup('SHOPPING', [
-              _menuItem(Icons.receipt_long_outlined, 'My Orders', () => context.push('/my-orders')),
-              _menuItem(Icons.favorite_border_rounded, 'Wishlist', () => context.push('/wishlist')),
-              _menuItem(Icons.bookmark_outline_rounded, 'Saved Looks', () => context.push('/saved-looks')),
-              _menuItem(Icons.quiz_outlined, 'Style Quiz', () => context.push('/style-quiz')),
-              _menuItem(Icons.location_on_outlined, 'Addresses', () => context.push('/addresses')),
+              _menuItem(Icons.receipt_long_outlined, 'My Orders', () => context.go('/orders')),
+              _menuItem(Icons.favorite_border_rounded, 'Wishlist', () => context.push('/profile/wishlist')),
+              _menuItem(Icons.bookmark_outline_rounded, 'Saved Looks', () => context.push('/profile/saved-looks')),
+              _menuItem(Icons.quiz_outlined, 'Style Quiz', () => context.push('/profile/style-quiz')),
+              _menuItem(Icons.location_on_outlined, 'Addresses', () => context.push('/profile/addresses')),
             ]),
             const SizedBox(height: 18),
           ],
           _menuGroup('ACCOUNT', [
-            _menuItem(Icons.person_outline_rounded, 'Edit Profile', () => context.push('/edit-profile')),
-            _menuItem(Icons.settings_outlined, 'Settings', () => context.push('/settings')),
-            _menuItem(Icons.help_outline_rounded, 'Help & Support', () => context.push('/help-support')),
+            _menuItem(Icons.person_outline_rounded, 'Edit Profile', () => context.push('/profile/edit-profile')),
+            _menuItem(Icons.settings_outlined, 'Settings', () => context.push('/profile/settings')),
+            _menuItem(Icons.help_outline_rounded, 'Help & Support', () => context.push('/profile/help-support')),
           ]),
           if (AuthService.user != null && AuthService.user!['is_superuser'] == true) ...[
             const SizedBox(height: 18),
             _menuGroup('ADMIN', [
-              _menuItem(Icons.admin_panel_settings_outlined, 'Admin Panel', () => context.push('/admin')),
+              _menuItem(Icons.admin_panel_settings_outlined, 'Admin Panel', () => context.push('/profile/admin')),
             ]),
           ],
         ],

@@ -97,7 +97,7 @@ class _GuidedScanModeState extends State<GuidedScanMode> {
     if (_currentPhoto == 1) {
       setState(() => _currentPhoto = 2);
     } else {
-      context.push('/body-measurement/quality', extra: {
+      context.push('/home/body-measurement/quality', extra: {
         'frontImagePath': _frontImagePath,
         'sideImagePath': _sideImagePath,
         'gender': _gender,
@@ -399,7 +399,7 @@ class _GuidedScanModeState extends State<GuidedScanMode> {
       child: OutlinedButton(
         onPressed: () {
           HapticFeedback.lightImpact();
-          context.push('/body-measurement/quality', extra: {
+          context.push('/home/body-measurement/quality', extra: {
             'frontImagePath': _frontImagePath,
             'sideImagePath': null,
             'gender': _gender,

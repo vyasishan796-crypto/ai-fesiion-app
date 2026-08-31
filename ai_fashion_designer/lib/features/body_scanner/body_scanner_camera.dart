@@ -71,7 +71,7 @@ class _BodyScannerCameraState extends State<BodyScannerCamera> {
           _feedback = 'Great! Now turn to the side';
         });
       } else {
-        context.push('/body-scan/quality');
+        context.push('/home/body-scan/quality');
       }
     });
   }
@@ -300,7 +300,7 @@ class _BodyScannerCameraState extends State<BodyScannerCamera> {
   Widget _buildSkipButton() {
     return GestureDetector(
       onTap: () {
-        context.push('/body-scan/quality');
+        context.push('/home/body-scan/quality');
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),

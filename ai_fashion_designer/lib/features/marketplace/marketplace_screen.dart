@@ -109,11 +109,6 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
             expandedHeight: 0,
             backgroundColor: Colors.black,
             elevation: 0,
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
-              color: Colors.white,
-              onPressed: () => Navigator.of(context).pop(),
-            ),
             title: Text(
               'STYLE.AI',
               style: GoogleFonts.inter(
@@ -136,7 +131,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                   IconButton(
                     icon: const Icon(Icons.shopping_bag_outlined, size: 24),
                     color: Colors.white,
-                    onPressed: () => context.push('/cart'),
+                    onPressed: () => context.push('/marketplace/cart'),
                   ),
                   if (CartService().totalItems > 0)
                     Positioned(
@@ -1155,7 +1150,7 @@ class ProductDetailScreen extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   CartService().addItem(product, size: product.sizes.isNotEmpty ? product.sizes.first : '');
-                  context.push('/cart');
+                  context.push('/marketplace/cart');
                 },
                 child: Container(
                   height: 52,

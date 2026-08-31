@@ -265,7 +265,7 @@ class ScanPreparation extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () {
             HapticFeedback.lightImpact();
-            context.push('/body-scan/camera');
+            context.push('/home/body-scan/camera');
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.transparent,

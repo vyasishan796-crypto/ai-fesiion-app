@@ -81,7 +81,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       final itemCount = order.items.length;
       final itemNames = order.items.map((i) => i.product.name).join(', ');
       await NotificationService().showOrderPlaced(order.id, itemCount > 2 ? '${itemNames.substring(0, 40)}...' : itemNames);
-      if (mounted) context.push('/order-confirmation', extra: order.id);
+      if (mounted) context.push('/orders/order-confirmation', extra: order.id);
     } catch (e) {
       if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error placing order: $e'), backgroundColor: AppColors.error));
     } finally {

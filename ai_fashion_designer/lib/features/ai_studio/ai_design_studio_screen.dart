@@ -1,4 +1,4 @@
-﻿import 'dart:io';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -199,13 +199,13 @@ class _AIDesignStudioScreenState extends State<AIDesignStudioScreen> {
   void _addToCart() {
     if (_lastGeneration == null) return;
     // Navigate to cart or add directly
-    context.push('/cart');
+    context.push('/marketplace/cart');
   }
 
   void _viewProduct() {
     if (_selectedOutfit == null) return;
     final product = _selectedOutfit!.products.first;
-    context.push('/marketplace/product/${product.id}');
+    context.go('/marketplace');
   }
 
   void _tryAnother() {

@@ -101,7 +101,7 @@ class OutfitPersonalization extends StatelessWidget {
                 backgroundColor: AppColors.charcoal,
                 behavior: SnackBarBehavior.floating,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                action: SnackBarAction(label: 'View Outfits', textColor: AppColors.accentPurple, onPressed: () => context.push('/browse-outfits')),
+                action: SnackBarAction(label: 'View Outfits', textColor: AppColors.accentPurple, onPressed: () => context.push('/home/browse-outfits')),
               ),
             );
           },

@@ -216,7 +216,7 @@ class _SavedLooksScreenState extends State<SavedLooksScreen> {
           ),
           const SizedBox(height: 24),
           ElevatedButton(
-            onPressed: () => context.push('/browse-outfits'),
+            onPressed: () => context.push('/home/browse-outfits'),
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primary,
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),

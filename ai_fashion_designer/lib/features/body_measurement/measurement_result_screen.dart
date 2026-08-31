@@ -63,7 +63,7 @@ class _MeasurementResultScreenState extends State<MeasurementResultScreen> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () => context.push('/body-measurement/privacy'),
+            onPressed: () => context.push('/home/body-measurement/privacy'),
             icon: const Icon(Icons.shield_outlined, color: AppColors.white, size: 22),
           ),
         ],
@@ -214,7 +214,7 @@ class _MeasurementResultScreenState extends State<MeasurementResultScreen> {
             const Spacer(),
             TextButton.icon(
               onPressed: () async {
-                await context.push('/body-measurement/editing');
+                await context.push('/home/body-measurement/editing');
                 if (mounted) {
                   final service = BodyMeasurementService();
                   if (service.currentProfile != null) {
@@ -376,7 +376,7 @@ class _MeasurementResultScreenState extends State<MeasurementResultScreen> {
             child: ElevatedButton(
               onPressed: () {
                 HapticFeedback.lightImpact();
-                context.push('/body-measurement/outfit-recommendation');
+                context.push('/home/body-measurement/outfit-recommendation');
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.transparent,
@@ -408,7 +408,7 @@ class _MeasurementResultScreenState extends State<MeasurementResultScreen> {
           width: double.infinity,
           height: 54,
           child: OutlinedButton(
-            onPressed: () => context.push('/body-measurement/size-recommendation'),
+            onPressed: () => context.push('/home/body-measurement/size-recommendation'),
             style: OutlinedButton.styleFrom(
               side: const BorderSide(color: AppColors.border, width: 1.5),
               shape: RoundedRectangleBorder(

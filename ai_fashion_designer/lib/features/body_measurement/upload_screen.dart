@@ -28,7 +28,7 @@ class _BodyMeasurementUploadState extends State<BodyMeasurementUpload> {
         maxHeight: 1024,
       );
       if (photo != null && context.mounted) {
-        context.push('/body-measurement/guided', extra: {
+        context.push('/home/body-measurement/guided', extra: {
           'imagePath': photo.path,
           'photoNumber': 1,
           'gender': _gender,
@@ -53,7 +53,7 @@ class _BodyMeasurementUploadState extends State<BodyMeasurementUpload> {
         maxHeight: 1024,
       );
       if (image != null && context.mounted) {
-        context.push('/body-measurement/guided', extra: {
+        context.push('/home/body-measurement/guided', extra: {
           'imagePath': image.path,
           'photoNumber': 1,
           'gender': _gender,
@@ -265,7 +265,7 @@ class _BodyMeasurementUploadState extends State<BodyMeasurementUpload> {
     final demoBytes = _createDemoJpeg();
     await demoFile.writeAsBytes(demoBytes);
     if (context.mounted) {
-      context.push('/body-measurement/guided', extra: {'imagePath': demoFile.path, 'photoNumber': 1, 'isDemo': true, 'gender': _gender});
+      context.push('/home/body-measurement/guided', extra: {'imagePath': demoFile.path, 'photoNumber': 1, 'isDemo': true, 'gender': _gender});
     }
   }
 

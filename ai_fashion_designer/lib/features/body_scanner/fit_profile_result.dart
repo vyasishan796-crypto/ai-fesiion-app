@@ -60,7 +60,7 @@ class _FitProfileResultState extends State<FitProfileResult> {
         actions: [
           IconButton(
             icon: const Icon(Icons.shield_outlined, color: AppColors.white, size: 22),
-            onPressed: () => context.push('/body-scan/privacy'),
+            onPressed: () => context.push('/home/body-scan/privacy'),
           ),
         ],
       ),
@@ -82,7 +82,7 @@ class _FitProfileResultState extends State<FitProfileResult> {
               padding: const EdgeInsets.only(bottom: 16),
               child: FitRecommendationCard(
                 recommendation: rec,
-                onTryOn: () => context.push('/virtual-tryon'),
+                onTryOn: () => context.push('/home/virtual-tryon'),
               ),
             )),
             const SizedBox(height: 28),
@@ -249,7 +249,7 @@ class _FitProfileResultState extends State<FitProfileResult> {
         child: ElevatedButton(
           onPressed: () {
             HapticFeedback.lightImpact();
-            context.push('/body-scan/personalization');
+            context.push('/home/body-scan/personalization');
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.transparent,
@@ -285,7 +285,7 @@ class _FitProfileResultState extends State<FitProfileResult> {
       child: OutlinedButton(
         onPressed: () {
           HapticFeedback.lightImpact();
-          context.push('/body-scan/measurements');
+          context.push('/home/body-scan/measurements');
         },
         style: OutlinedButton.styleFrom(
           side: const BorderSide(color: AppColors.border, width: 1.5),

@@ -281,7 +281,7 @@ class BodyScannerLanding extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () {
             HapticFeedback.lightImpact();
-            context.push('/body-scan/preparation');
+            context.push('/home/body-scan/preparation');
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.transparent,
@@ -317,7 +317,7 @@ class BodyScannerLanding extends StatelessWidget {
       child: OutlinedButton(
         onPressed: () {
           HapticFeedback.lightImpact();
-          context.push('/body-scan/measurements');
+          context.push('/home/body-scan/measurements');
         },
         style: OutlinedButton.styleFrom(
           side: const BorderSide(color: AppColors.border, width: 1.5),

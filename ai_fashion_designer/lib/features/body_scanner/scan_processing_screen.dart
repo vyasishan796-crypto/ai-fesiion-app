@@ -62,7 +62,7 @@ class _ScanProcessingScreenState extends State<ScanProcessingScreen>
         timer.cancel();
         Future.delayed(const Duration(milliseconds: 500), () {
           if (mounted) {
-            context.push('/body-scan/result');
+            context.push('/home/body-scan/result');
           }
         });
       }

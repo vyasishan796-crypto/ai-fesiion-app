@@ -198,9 +198,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 textInputAction: TextInputAction.search,
                 onSubmitted: (val) {
                   if (val.isNotEmpty) {
-                    context.push('/marketplace?search=${Uri.encodeComponent(val)}');
+                    context.go('/marketplace?search=${Uri.encodeComponent(val)}');
                   } else {
-                    context.push('/marketplace');
+                    context.go('/marketplace');
                   }
                 },
                 style: GoogleFonts.inter(fontSize: 14, color: const Color(0xFF1D1D1F)),
@@ -223,13 +223,13 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
       child: Row(
         children: [
-          _quickAction('Scan', Icons.camera_alt_outlined, () => context.push('/body-measurement/upload')),
+          _quickAction('Scan', Icons.camera_alt_outlined, () => context.push('/home/body-measurement/upload')),
           const SizedBox(width: 12),
-          _quickAction('Generate', Icons.auto_awesome_outlined, () => context.push('/ai-studio')),
+          _quickAction('Generate', Icons.auto_awesome_outlined, () => context.push('/home/ai-studio')),
           const SizedBox(width: 12),
-          _quickAction('Chat', Icons.chat_bubble_outline_rounded, () => context.push('/stylist-chat')),
+          _quickAction('Chat', Icons.chat_bubble_outline_rounded, () => context.push('/home/stylist-chat')),
           const SizedBox(width: 12),
-          _quickAction('Browse', Icons.explore_outlined, () => context.push('/browse-outfits')),
+          _quickAction('Browse', Icons.explore_outlined, () => context.push('/home/browse-outfits')),
         ],
       ),
     ).animate().fadeIn(duration: 400.ms, delay: 150.ms);
@@ -283,17 +283,17 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(height: 12),
           Row(
             children: [
-              Expanded(child: _featureCard('AI Design Studio', Icons.palette_outlined, () => context.push('/ai-studio'))),
+              Expanded(child: _featureCard('AI Design Studio', Icons.palette_outlined, () => context.push('/home/ai-studio'))),
               const SizedBox(width: 12),
-              Expanded(child: _featureCard('Style Analyzer', Icons.auto_awesome_outlined, () => context.push('/style-analyzer'))),
+              Expanded(child: _featureCard('Style Analyzer', Icons.auto_awesome_outlined, () => context.push('/home/style-analyzer'))),
             ],
           ),
           const SizedBox(height: 12),
           Row(
             children: [
-              Expanded(child: _featureCard('AI Assistant', Icons.chat_outlined, () => context.push('/stylist-chat'))),
+              Expanded(child: _featureCard('AI Assistant', Icons.chat_outlined, () => context.push('/home/stylist-chat'))),
               const SizedBox(width: 12),
-              Expanded(child: _featureCard('Outfit Builder', Icons.checkroom_outlined, () => context.push('/browse-outfits'))),
+              Expanded(child: _featureCard('Outfit Builder', Icons.checkroom_outlined, () => context.push('/home/browse-outfits'))),
             ],
           ),
         ],
@@ -357,7 +357,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ];
               final style = styles[index];
               return GestureDetector(
-                onTap: () => context.push('/marketplace'),
+                onTap: () => context.go('/marketplace'),
                 child: Container(
                   width: 160,
                   decoration: BoxDecoration(
@@ -437,7 +437,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _recommendedCard(Product product, int index) {
     return GestureDetector(
-      onTap: () => context.push('/marketplace'),
+      onTap: () => context.go('/marketplace'),
       child: Container(
         width: 180,
         decoration: BoxDecoration(
@@ -560,7 +560,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ];
               final cat = cats[index];
               return GestureDetector(
-                onTap: () => context.push('/marketplace'),
+                onTap: () => context.go('/marketplace'),
                 child: Container(
                   width: 100,
                   decoration: BoxDecoration(
@@ -626,7 +626,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               GestureDetector(
-                onTap: () => context.push('/tailors'),
+                onTap: () => context.go('/tailors'),
                 child: Text(
                   'SEE ALL',
                   style: GoogleFonts.inter(
@@ -655,7 +655,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ];
               final tailor = tailors[index];
               return GestureDetector(
-                onTap: () => context.push('/tailors'),
+                onTap: () => context.go('/tailors'),
                 child: Container(
                   width: 200,
                   decoration: BoxDecoration(
@@ -720,7 +720,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 24, 20, 0),
       child: GestureDetector(
-        onTap: () => context.push('/invite-earn'),
+        onTap: () => context.push('/home/invite-earn'),
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(

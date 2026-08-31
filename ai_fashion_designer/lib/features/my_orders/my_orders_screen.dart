@@ -39,7 +39,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> with SingleTickerProvid
       appBar: AppBar(
         backgroundColor: Colors.black,
         elevation: 0,
-        leading: IconButton(icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20), color: Colors.white, onPressed: () => Navigator.pop(context)),
+        leading: Navigator.canPop(context) ? IconButton(icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20), color: Colors.white, onPressed: () => Navigator.pop(context)) : null,
         centerTitle: true,
         title: Text('MY ORDERS', style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w800, color: Colors.white, letterSpacing: 2)),
       ),
@@ -101,7 +101,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> with SingleTickerProvid
   Widget _orderCard(Order order) {
     final statusColor = _getStatusColor(order.status);
     return GestureDetector(
-      onTap: () => context.push('/order-detail', extra: order.id),
+      onTap: () => context.push('/orders/order-detail', extra: order.id),
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(14), border: Border.all(color: Colors.grey[200]!)),

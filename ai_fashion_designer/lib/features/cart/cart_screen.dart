@@ -283,7 +283,7 @@ class _CartScreenState extends State<CartScreen> {
             width: double.infinity,
             height: 52,
             child: GestureDetector(
-              onTap: () => context.push('/checkout'),
+              onTap: () => context.push('/marketplace/checkout'),
               child: Container(
                 decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(30)),
                 child: Center(child: Text('CHECKOUT', style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w700, color: Colors.white, letterSpacing: 2))),

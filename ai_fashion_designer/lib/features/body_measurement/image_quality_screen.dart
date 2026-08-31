@@ -471,7 +471,7 @@ class _ImageQualityScreenState extends State<ImageQualityScreen> {
         child: ElevatedButton(
           onPressed: () {
             HapticFeedback.lightImpact();
-            context.push('/body-measurement/processing', extra: {
+            context.push('/home/body-measurement/processing', extra: {
               'frontImagePath': _frontImagePath,
               'sideImagePath': _sideImagePath,
             });
@@ -517,7 +517,7 @@ class _ImageQualityScreenState extends State<ImageQualityScreen> {
             child: ElevatedButton(
               onPressed: () {
                 HapticFeedback.lightImpact();
-                context.push('/body-measurement/upload');
+                context.push('/home/body-measurement/upload');
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.transparent,
@@ -544,7 +544,7 @@ class _ImageQualityScreenState extends State<ImageQualityScreen> {
           child: OutlinedButton(
             onPressed: () {
               HapticFeedback.lightImpact();
-              context.push('/body-measurement/upload');
+              context.push('/home/body-measurement/upload');
             },
             style: OutlinedButton.styleFrom(
               side: const BorderSide(color: AppColors.border, width: 1.5),

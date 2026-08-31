@@ -218,7 +218,7 @@ class _OutfitRecommendationScreenState extends State<OutfitRecommendationScreen>
               child: _buildActionTile(
                 icon: Icons.refresh,
                 label: 'Retake Scan',
-                onTap: () => context.push('/body-measurement/upload'),
+                onTap: () => context.push('/home/body-measurement/upload'),
               ),
             ),
             const SizedBox(width: 12),
@@ -226,7 +226,7 @@ class _OutfitRecommendationScreenState extends State<OutfitRecommendationScreen>
               child: _buildActionTile(
                 icon: Icons.edit_outlined,
                 label: 'Edit Measurements',
-                onTap: () => context.push('/body-measurement/editing'),
+                onTap: () => context.push('/home/body-measurement/editing'),
               ),
             ),
           ],
@@ -238,7 +238,7 @@ class _OutfitRecommendationScreenState extends State<OutfitRecommendationScreen>
               child: _buildActionTile(
                 icon: Icons.straighten,
                 label: 'View Sizes',
-                onTap: () => context.push('/body-measurement/size-recommendation'),
+                onTap: () => context.push('/home/body-measurement/size-recommendation'),
               ),
             ),
             const SizedBox(width: 12),
@@ -246,7 +246,7 @@ class _OutfitRecommendationScreenState extends State<OutfitRecommendationScreen>
               child: _buildActionTile(
                 icon: Icons.shield_outlined,
                 label: 'Privacy',
-                onTap: () => context.push('/body-measurement/privacy'),
+                onTap: () => context.push('/home/body-measurement/privacy'),
               ),
             ),
           ],

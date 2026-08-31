@@ -91,12 +91,12 @@ class _TailorsScreenState extends State<TailorsScreen> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         elevation: 0,
-        leading: IconButton(icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20), color: Colors.white, onPressed: () => Navigator.pop(context)),
+        leading: Navigator.canPop(context) ? IconButton(icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20), color: Colors.white, onPressed: () => Navigator.pop(context)) : null,
         centerTitle: true,
         title: Text('TAILORS', style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w800, color: Colors.white, letterSpacing: 2)),
         actions: [
           Stack(clipBehavior: Clip.none, children: [
-            IconButton(icon: const Icon(Icons.receipt_long_rounded, size: 22), color: Colors.white, onPressed: () => context.push('/my-bookings')),
+            IconButton(icon: const Icon(Icons.receipt_long_rounded, size: 22), color: Colors.white, onPressed: () => context.push('/tailors/my-bookings')),
             if (_bookingService.bookingCount > 0)
               Positioned(right: 8, top: 8, child: Container(padding: const EdgeInsets.all(4), decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle), child: Text('${_bookingService.bookingCount}', style: GoogleFonts.inter(fontSize: 9, fontWeight: FontWeight.w800, color: Colors.black)))),
           ]),
@@ -337,7 +337,7 @@ class _TailorsScreenState extends State<TailorsScreen> {
 
   void _showBookingDialog(Tailor tailor) async {
     final result = await showModalBottomSheet<Map<String, dynamic>>(context: context, isScrollControlled: true, backgroundColor: Colors.transparent, builder: (_) => _BookingSheet(tailor: tailor, bookingService: _bookingService));
-    if (result != null && mounted) context.push('/booking-payment', extra: result);
+    if (result != null && mounted) context.push('/tailors/booking-payment', extra: result);
   }
 }
 
